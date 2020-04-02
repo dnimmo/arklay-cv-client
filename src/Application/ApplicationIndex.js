@@ -3,10 +3,16 @@ import ApplicationProvider from './ApplicationContext';
 import Application from './Application';
 
 
+const style =
+  { minHeight: '100vh'};
+
+
 const ApplicationIndex = 
   () =>  
       <ApplicationProvider>
-          <Application />
+          <Application 
+              style={style}
+          />
       </ApplicationProvider>;
 
 

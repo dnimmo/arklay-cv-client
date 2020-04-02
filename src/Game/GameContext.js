@@ -36,11 +36,19 @@ const actions = {
 const update = 
   (state, action) => {
       switch (action.type) {
+      case actions.HIDE_INVENTORY:
+          return {
+              ...state
+              , state: states.DISPLAYING_DIRECTIONS
+          };
+
       case actions.SHOW_INVENTORY: 
           return {
               ...state
               , state: states.DISPLAYING_INVENTORY
           };
+
+
       default: 
           return state;
       }
@@ -56,6 +64,17 @@ const GameProvider =
         useReducer(update, initialState);
 
 
+      const hideInventory =
+        useCallback(
+            () => {
+                dispatch({
+                    type: actions.HIDE_INVENTORY
+                });
+            },
+            [dispatch]
+        );
+      
+
       const showInventory = 
         useCallback(
             () => {
@@ -69,6 +88,7 @@ const GameProvider =
 
       const value = { 
           gameState
+          , hideInventory
           , showInventory
       };
 

@@ -5,7 +5,7 @@ import GameProvider from './GameContext';
 const GameIndex = 
   () => 
       <GameProvider>
-          <Game />;
+          <Game />
       </GameProvider>;
 
 
