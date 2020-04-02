@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Application from './Application/Application';
-import ApplicationProvider from './Application/ApplicationContext';
+import ApplicationIndex from './Application/ApplicationIndex';
+
 
 const rootElement = document.getElementById('root');
 
 
 ReactDOM.render(
-    <ApplicationProvider>
-        <Application />
-    </ApplicationProvider>
+    <ApplicationIndex />
     , rootElement
 );

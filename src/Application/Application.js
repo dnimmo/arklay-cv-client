@@ -1,33 +1,27 @@
 import React from 'react';
 
 import { ApplicationContext, states } from './ApplicationContext';
-
+import TitleScreen from './TitleScreen';
+import GameIndex from '../Game/GameIndex';
+import Error from './Error';
 
 const Application = 
   () => {
-      const { applicationState, startGame } = React.useContext(ApplicationContext);
+      const { applicationState } = 
+        React.useContext(ApplicationContext);
 
       switch (applicationState) {
       case states.DISPLAYING_TITLE_SCREEN:
-          return (
-              <div>
-                  <button onClick={startGame}>Start!</button>
-              </div>
-          );
-          
+          return <TitleScreen />;
+
       case states.DISPLAYING_GAME:
-          return (
-              <div>
-                  <p>This is the game!</p>
-              </div>
-          );
+          return <GameIndex />;
 
       default: 
           return (
-              // Placeholder for `error` view
-              <div>
-                  <p>Something has gone wrong! :(</p>
-              </div>
+              <Error 
+                  description={'Application has ended up in an unexpected state'} 
+              />
           );
 
       }

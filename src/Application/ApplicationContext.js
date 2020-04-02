@@ -25,7 +25,6 @@ const update =
   (state, action) => {
       switch (action.type) {
       case actions.START_GAME: 
-          console.log('Start game!');
           return states.DISPLAYING_GAME;
 
       default: 
@@ -34,7 +33,6 @@ const update =
   };
 
 
-export
 const ApplicationProvider = 
   ({ children }) => {
       const [   
