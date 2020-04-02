@@ -35,10 +35,10 @@ const update =
 export
 const ApplicationProvider = 
   ({ children }) => {
-      const 
-          [ applicationState
-              , dispatch
-          ] = 
+      const [   
+          applicationState, 
+          dispatch
+      ] = 
         useReducer(update, initialState);  
 
 
@@ -53,9 +53,8 @@ const ApplicationProvider =
           [dispatch]
       );
 
-
-      const value = 
-      { applicationState
+      const value =         {  
+          applicationState
           , startGame
       };
 
