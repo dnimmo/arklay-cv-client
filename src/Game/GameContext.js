@@ -28,13 +28,14 @@ const actions = {
     EXAMINE_ITEM: 'EXAMINE_ITEM'
     , EXAMINE_ROOM: 'EXAMINE_ROOM'
     , MOVE_IN_DIRECTION: 'MOVE_IN_DIRECTION'
+    , SHOW_DIRECTIONS: 'SHOW_DIRECTIONS'
     , SHOW_INVENTORY: 'SHOW_INVENTORY'
 };
 
 
 const update = 
   (state, action) => {
-      switch (action) {
+      switch (action.type) {
       case actions.SHOW_INVENTORY: 
           return {
               ...state
@@ -81,7 +82,7 @@ const GameProvider =
 
 
 GameProvider.propTypes = {
-    children: PropTypes.object.isRequired
+    children: PropTypes.array.isRequired
 };
 
 
