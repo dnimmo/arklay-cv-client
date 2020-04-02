@@ -4,6 +4,7 @@ import Directions from './Directions';
 import Inventory from './Inventory';
 import Error from '../Error';
 import Button from '../components/Button';
+import RoomDescription from './RoomDescription';
 
 const Game = 
   () => { 
@@ -57,7 +58,7 @@ const Game =
 
       return (
           <div>
-              <section>Room info here</section>
+              <RoomDescription />
               { chooseState(state) } 
           </div>
       );
