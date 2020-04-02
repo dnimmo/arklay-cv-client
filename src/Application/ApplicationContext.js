@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 export 
 const ApplicationContext = 
@@ -21,50 +22,53 @@ const actions =
 
 const update = 
   (state, action) => {
-    switch (action.type) {
+      switch (action.type) {
       case actions.START_GAME: 
-        return console.log('Start game!')
+          return console.log('Start game!');
 
       default: 
-        return state;
-    }
-  }
+          return state;
+      }
+  };
 
 
 export
 const ApplicationProvider = 
   ({ children }) => {
-    const 
-      [ applicationState
-      , dispatch
-      ] = 
+      const 
+          [ applicationState
+              , dispatch
+          ] = 
         useReducer(update, initialState);  
 
 
-    const startGame = useCallback(
-      () => {
-        dispatch({
-          type: actions.START_GAME,
-        });
-      },
-      // The second argument here is an array of things that the first argument relies on
-      // This is so it knows what to ignore to avoid unnecessary re-renders
-      [dispatch]
-    );
+      const startGame = useCallback(
+          () => {
+              dispatch({
+                  type: actions.START_GAME,
+              });
+          },
+          // The second argument here is an array of things that the first argument relies on
+          // This is so it knows what to ignore to avoid unnecessary re-renders
+          [dispatch]
+      );
 
 
-    const value = 
+      const value = 
       { applicationState
-      , startGame
-      }
+          , startGame
+      };
 
-      
-    return (
-      <ApplicationContext.Provider value={value}>
-        {children}
-      </ApplicationContext.Provider>
-    );
+
+      return (
+          <ApplicationContext.Provider value={value}>
+              {children}
+          </ApplicationContext.Provider>
+      );
   };
+
+ApplicationProvider.propTypes =
+  { children: PropTypes.object.isRequired };
 
 
 export default ApplicationProvider;
