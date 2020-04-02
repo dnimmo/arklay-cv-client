@@ -25,7 +25,10 @@ const initialState = {
 
 
 const actions = {
-    SHOW_INVENTORY: 'SHOW_INVENTORY'
+    EXAMINE_ITEM: 'EXAMINE_ITEM'
+    , EXAMINE_ROOM: 'EXAMINE_ROOM'
+    , MOVE_IN_DIRECTION: 'MOVE_IN_DIRECTION'
+    , SHOW_INVENTORY: 'SHOW_INVENTORY'
 };
 
 
@@ -34,8 +37,8 @@ const update =
       switch (action) {
       case actions.SHOW_INVENTORY: 
           return {
-              ...state,
-              state: states.DISPLAYING_INVENTORY
+              ...state
+              , state: states.DISPLAYING_INVENTORY
           };
       default: 
           return state;
