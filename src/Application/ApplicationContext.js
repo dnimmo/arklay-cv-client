@@ -5,10 +5,11 @@ export
 const ApplicationContext = 
   createContext();
 
-
-const states = 
-  { DISPLAYING_TITLE_SCREEN: 'DISPLAYING_TITLE_SCREEN'
-  };
+export
+const states = { 
+    DISPLAYING_TITLE_SCREEN: 'DISPLAYING_TITLE_SCREEN'
+    , DISPLAYING_GAME: 'DISPLAYING_GAME'
+};
 
 
 const initialState =
@@ -24,7 +25,8 @@ const update =
   (state, action) => {
       switch (action.type) {
       case actions.START_GAME: 
-          return console.log('Start game!');
+          console.log('Start game!');
+          return states.DISPLAYING_GAME;
 
       default: 
           return state;
@@ -36,8 +38,8 @@ export
 const ApplicationProvider = 
   ({ children }) => {
       const [   
-          applicationState, 
-          dispatch
+          applicationState
+          , dispatch
       ] = 
         useReducer(update, initialState);  
 
@@ -53,7 +55,7 @@ const ApplicationProvider =
           [dispatch]
       );
 
-      const value =         {  
+      const value = {  
           applicationState
           , startGame
       };
