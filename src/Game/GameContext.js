@@ -90,6 +90,20 @@ const update =
                       ...state
                       , state: states.DISPLAYING_DIRECTIONS
                       , message: items[action.payload].messageWhenUsed
+                      , inventory: {
+                          itemsHeld: 
+                              state
+                                  .inventory
+                                  .itemsHeld
+                                  .filter(x => 
+                                      x !== action.payload
+                                  )
+                          , itemsUsed: 
+                              state
+                                  .inventory
+                                  .itemsUsed
+                                  .concat(action.payload)
+                      }
                   }
                   : {
                       ...state
