@@ -1,8 +1,7 @@
 export 
 const isUnlocked =
   ({ room, itemsUsed }) => {
-      const { unlockRequirements }
-        = room;
+      const { unlockRequirements } = room;
 
       const unlockRequirementsMet =
         !unlockRequirements

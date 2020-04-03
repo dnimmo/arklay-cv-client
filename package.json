@@ -14,12 +14,16 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-jest": "^25.2.6",
+    "jest": "^25.2.7",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest test",
     "eject": "react-scripts eject"
   },
   "browserslist": [
