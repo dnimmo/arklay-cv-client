@@ -9,6 +9,7 @@ const style = {
     , color: '#fafafa'
     , fontSize: '20px'
     , cursor: 'pointer'
+    , marginBottom: '20px'
 };
 
 

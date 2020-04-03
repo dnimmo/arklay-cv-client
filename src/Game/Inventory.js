@@ -5,6 +5,13 @@ import items from './items';
 import { id } from '../utils';
 
 
+const styles = {
+    inventoryContainer: {
+        minHeight: '20vh'
+    }
+};
+
+
 const Inventory =
   () => {
       const { 
@@ -19,7 +26,7 @@ const Inventory =
 
 
       return (
-          <div>
+          <div style={styles.inventoryContainer}>
               <p>INVENTORY</p>
               { inventory.itemsHeld.map(
                   x => 
