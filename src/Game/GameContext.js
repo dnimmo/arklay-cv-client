@@ -27,7 +27,7 @@ const initialState = {
 const actions = {
     EXAMINE_ITEM: 'EXAMINE_ITEM'
     , EXAMINE_ROOM: 'EXAMINE_ROOM'
-    , MOVE_IN_DIRECTION: 'MOVE_IN_DIRECTION'
+    , CHANGE_ROOM: 'CHANGE_ROOM'
     , SHOW_DIRECTIONS: 'SHOW_DIRECTIONS'
     , SHOW_INVENTORY: 'SHOW_INVENTORY'
 };
@@ -46,6 +46,12 @@ const update =
           return {
               ...state
               , state: states.DISPLAYING_INVENTORY
+          };
+
+      case actions.CHANGE_ROOM:
+          return {
+              ...state
+              , currentRoom: rooms[action.payload]
           };
 
 
@@ -86,10 +92,23 @@ const GameProvider =
         );
 
 
+      const changeRoom =
+        useCallback(
+            (roomKey) => {
+                dispatch({
+                    type: actions.CHANGE_ROOM,
+                    payload: roomKey
+                });
+            },
+            [dispatch]
+        );
+
+
       const value = { 
           gameState
           , hideInventory
           , showInventory
+          , changeRoom
       };
 
 
@@ -102,7 +121,7 @@ const GameProvider =
 
 
 GameProvider.propTypes = {
-    children: PropTypes.array.isRequired
+    children: PropTypes.object
 };
 
 

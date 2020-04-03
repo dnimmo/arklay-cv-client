@@ -1,4 +1,5 @@
 import React from 'react';
+import { GameContext } from './GameContext';
 
 
 const style = {
@@ -7,11 +8,28 @@ const style = {
 
 
 const RoomDescription =
-  () => 
-      <div
-          style={style}>
-          <p>Room description here</p>
-      </div>;
+  () => {
+      const { 
+          gameState
+      } = 
+        React.useContext(GameContext);
+
+
+      const {
+          currentRoom
+      } = 
+        gameState;
+
+
+      return (
+          <div
+              style={style}
+          >
+              <p>{ currentRoom.intro }</p>
+              <p>{ currentRoom.surroundings }</p>
+          </div>
+      );
+  };
 
 
 export default RoomDescription;
