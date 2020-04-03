@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import rooms, { isUnlocked } from './rooms';
+import items, { itemCanBeUsed } from './items';
 
 export
 const GameContext =
@@ -18,7 +19,7 @@ const initialState = {
     state: states.DISPLAYING_DIRECTIONS
     , currentRoom: rooms.START
     , inventory: {
-        itemsHeld: []
+        itemsHeld: [ 'TEST_ITEM' ]
         , itemsUsed: []
     }
     , message: null  // This is used to give temporary contextual info to the player
@@ -31,6 +32,7 @@ const actions = {
     , CHANGE_ROOM: 'CHANGE_ROOM'
     , SHOW_DIRECTIONS: 'SHOW_DIRECTIONS'
     , SHOW_INVENTORY: 'SHOW_INVENTORY'
+    , USE_ITEM: 'USE_ITEM'
 };
 
 
@@ -74,6 +76,24 @@ const update =
                   : { 
                       ...state
                       , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                  }
+          );
+
+
+      case actions.USE_ITEM:
+          return (
+              itemCanBeUsed({
+                  availableDirections: state.currentRoom.availableDirections
+                  , item: action.payload
+              })
+                  ? {
+                      ...state
+                      , state: states.DISPLAYING_DIRECTIONS
+                      , message: items[action.payload].messageWhenUsed
+                  }
+                  : {
+                      ...state
+                      , message: items[action.payload].messageWhenNotUsed
                   }
           );
 
@@ -127,12 +147,12 @@ const GameProvider =
         );
 
 
-      const showMessage =
+      const attemptToUseItem =
         useCallback(
-            (messageToDisplay) => {
+            (itemKey) => {
                 dispatch({
-                    type: actions.UPDATE_MESSAGE,
-                    payload: messageToDisplay
+                    type: actions.USE_ITEM,
+                    payload: itemKey
                 });
             },
             [dispatch]
@@ -144,7 +164,7 @@ const GameProvider =
           , hideInventory
           , showInventory
           , changeRoom
-          , showMessage
+          , attemptToUseItem
       };
 
 

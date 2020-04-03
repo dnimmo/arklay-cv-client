@@ -15,6 +15,7 @@ const Directions =
       const { currentRoom } = 
         gameState;
   
+        
       return (
           <div>
               <p>DIRECTIONS</p>
