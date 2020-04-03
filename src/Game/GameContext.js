@@ -21,6 +21,7 @@ const initialState = {
         itemsHeld: []
         , itemsUsed: []
     }
+    , message: null  // This is used to give temporary contextual info to the user
 };
 
 
@@ -40,19 +41,38 @@ const update =
           return {
               ...state
               , state: states.DISPLAYING_DIRECTIONS
+              , message: null
           };
+
 
       case actions.SHOW_INVENTORY: 
-          return {
-              ...state
-              , state: states.DISPLAYING_INVENTORY
-          };
+          return (
+              state.inventory.itemsHeld.length > 0
+                  ? {
+                      ...state
+                      , state: states.DISPLAYING_INVENTORY
+                      , message: null
+                  }
+                  : {
+                      ...state
+                      , message: 'Your inventory is empty!'
+                  }
+          );
+
 
       case actions.CHANGE_ROOM:
-          return {
-              ...state
-              , currentRoom: rooms[action.payload]
-          };
+          return (
+              rooms[action.payload].unlockRequirements 
+                  ? { 
+                      ...state
+                      , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                  }
+                  : {
+                      ...state
+                      , currentRoom: rooms[action.payload]
+                      , message: null
+                  }
+          );
 
 
       default: 
@@ -104,11 +124,24 @@ const GameProvider =
         );
 
 
+      const showMessage =
+        useCallback(
+            (messageToDisplay) => {
+                dispatch({
+                    type: actions.UPDATE_MESSAGE,
+                    payload: messageToDisplay
+                });
+            },
+            [dispatch]
+        );
+
+
       const value = { 
           gameState
           , hideInventory
           , showInventory
           , changeRoom
+          , showMessage
       };
 
 

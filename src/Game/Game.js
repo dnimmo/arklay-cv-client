@@ -16,7 +16,10 @@ const Game =
         React.useContext(GameContext);
 
 
-      const { state } = 
+      const { 
+          state
+          , message
+      } = 
         gameState;
 
 
@@ -28,7 +31,7 @@ const Game =
                     <section>
                         <Directions />
                         <Button 
-                            onClick={ showInventory }
+                            onClick={showInventory}
                             text="Show inventory"
                         />
                     </section>
@@ -60,6 +63,8 @@ const Game =
           <div>
               <RoomDescription />
               { chooseState(state) } 
+              { message && <p>{message}</p>
+              }
           </div>
       );
   };

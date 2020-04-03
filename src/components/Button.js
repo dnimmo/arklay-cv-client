@@ -8,6 +8,7 @@ const style = {
     , backgroundColor: 'rgba(0,0,0,0.5)'
     , color: '#fafafa'
     , fontSize: '20px'
+    , cursor: 'pointer'
 };
 
 
