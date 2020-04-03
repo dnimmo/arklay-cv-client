@@ -19,7 +19,7 @@ const initialState = {
     , currentRoom: rooms.START
     , inventory: {
         itemsHeld: []
-        , itemsUsed: []
+        , itemsUsed: ['TEST_ITEM']
     }
     , message: null  // This is used to give temporary contextual info to the user
 };
@@ -32,6 +32,24 @@ const actions = {
     , SHOW_DIRECTIONS: 'SHOW_DIRECTIONS'
     , SHOW_INVENTORY: 'SHOW_INVENTORY'
 };
+
+
+const isUnlocked =
+  ({ room, inventory }) => {
+      const { unlockRequirements }
+        = room;
+
+      const unlockRequirementsMet =
+        unlockRequirements
+            ? true
+            : unlockRequirements.every(
+                x =>
+                    inventory.itemsUsed.includes(x)
+            );
+
+      return unlockRequirementsMet;
+  };
+    
 
 
 const update = 
@@ -62,15 +80,18 @@ const update =
 
       case actions.CHANGE_ROOM:
           return (
-              rooms[action.payload].unlockRequirements 
-                  ? { 
-                      ...state
-                      , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
-                  }
-                  : {
+              isUnlocked({ 
+                  room: rooms[action.payload]
+                  , inventory: state.inventory
+              })
+                  ? {
                       ...state
                       , currentRoom: rooms[action.payload]
                       , message: null
+                  }
+                  : { 
+                      ...state
+                      , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
                   }
           );
 
