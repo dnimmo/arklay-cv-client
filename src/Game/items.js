@@ -1,5 +1,5 @@
 export
-const useItem =
+const itemCanBeUsed =
   ({ item, availableDirections }) => 
       availableDirections.some(
           ({ itemsThatCanBeUsed }) => 

@@ -1,4 +1,4 @@
-import { useItem } from '../../src/Game/items';
+import { itemCanBeUsed } from '../../src/Game/items';
 
 
 describe('Game/items', () => {
@@ -13,7 +13,7 @@ describe('Game/items', () => {
 
 
             const actual =
-              useItem({ 
+              itemCanBeUsed({ 
                   availableDirections
                   , item: 'TEST_ITEM'
               });
@@ -30,7 +30,7 @@ describe('Game/items', () => {
 
 
             const actual =
-              useItem({ 
+              itemCanBeUsed({ 
                   availableDirections
                   , item: 'TEST_ITEM_TWO'
               });
