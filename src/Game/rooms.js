@@ -1,3 +1,21 @@
+export 
+const isUnlocked =
+  ({ room, itemsUsed }) => {
+      const { unlockRequirements }
+        = room;
+
+      const unlockRequirementsMet =
+        !unlockRequirements
+            ? true
+            : unlockRequirements.every(
+                x =>
+                    itemsUsed.includes(x)
+            );
+
+      return unlockRequirementsMet;
+  };
+    
+
 const rooms = {
     START: { 
         name: 'Start'

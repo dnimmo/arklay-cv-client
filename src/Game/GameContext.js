@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import rooms from './rooms';
+import rooms, { isUnlocked } from './rooms';
 
 export
 const GameContext =
@@ -34,24 +34,6 @@ const actions = {
 };
 
 
-const isUnlocked =
-  ({ room, inventory }) => {
-      const { unlockRequirements }
-        = room;
-
-      const unlockRequirementsMet =
-        !unlockRequirements
-            ? true
-            : unlockRequirements.every(
-                x =>
-                    inventory.itemsUsed.includes(x)
-            );
-
-      return unlockRequirementsMet;
-  };
-    
-
-
 const update = 
   (state, action) => {
       switch (action.type) {
@@ -82,7 +64,7 @@ const update =
           return (
               isUnlocked({ 
                   room: rooms[action.payload]
-                  , inventory: state.inventory
+                  , itemsUsed: state.inventory.itemsUsed
               })
                   ? {
                       ...state
