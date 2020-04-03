@@ -26,7 +26,8 @@ const rooms = {
         , availableDirections: 
           [ { 
               text: 'Enter'
-              , room: 'TEST' 
+              , room: 'TEST'
+              , itemsThatCanBeUsed: ['TEST_ITEM']
           } 
           ]
         , descriptionWhenExamined : 'It\'s really cold out here.'
@@ -39,7 +40,8 @@ const rooms = {
         , availableDirections: 
           [ { 
               text: 'Go back'
-              , room: 'START' 
+              , room: 'START'
+              , itemsThatCanBeUsed: null
           }
           ]
         , unlockRequirements: ['TEST_ITEM']

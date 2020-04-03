@@ -1,4 +1,6 @@
-import { isUnlocked } from '../../src/Game/rooms';
+import { 
+    isUnlocked
+} from '../../src/Game/rooms';
 
 
 describe('Game/rooms', () => {
