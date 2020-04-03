@@ -19,9 +19,9 @@ const initialState = {
     , currentRoom: rooms.START
     , inventory: {
         itemsHeld: []
-        , itemsUsed: ['TEST_ITEM']
+        , itemsUsed: []
     }
-    , message: null  // This is used to give temporary contextual info to the user
+    , message: null  // This is used to give temporary contextual info to the player
 };
 
 
@@ -40,7 +40,7 @@ const isUnlocked =
         = room;
 
       const unlockRequirementsMet =
-        unlockRequirements
+        !unlockRequirements
             ? true
             : unlockRequirements.every(
                 x =>
@@ -167,7 +167,9 @@ const GameProvider =
 
 
       return (
-          <GameContext.Provider value={value}>
+          <GameContext.Provider 
+              value={value}
+          >
               {children}
           </GameContext.Provider>
       );
