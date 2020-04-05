@@ -8,17 +8,21 @@ import rooms, { isUnlocked } from './rooms';
 
 const styles = {
     icon : { 
-        height: '45px' 
+        height: '16px' 
         , width: 'auto'
-        , marginLeft: '10px'
     }
     , iconContainer: {
-        height: '100%'
+        backgroundColor: '#fafafa'
+        , border: '1px solid #fafafa'
+        , padding: '2px 4px'
+        , borderRadius: '50px'
+        , marginLeft: '-15px'
+        , marginTop: '-8px'
+        , position: 'absolute'
     }
     , direction: {
         minWidth: '280px'
         , display: 'inline-block'
-        , marginRight: '-65px'
     }
     , directionsContainer: {
         minHeight: '20vh'
@@ -56,7 +60,6 @@ const Directions =
         
       return (
           <div style={styles.directionsContainer}>
-              <p>DIRECTIONS</p>
               { currentRoom
                   .availableDirections
                   .map(

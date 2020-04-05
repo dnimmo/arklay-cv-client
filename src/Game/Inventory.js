@@ -27,7 +27,6 @@ const Inventory =
 
       return (
           <div style={styles.inventoryContainer}>
-              <p>INVENTORY</p>
               { inventory.itemsHeld.map(
                   x => 
                       <Button 

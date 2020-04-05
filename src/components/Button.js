@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 const style = { 
     padding: '10px 20px'
     , borderRadius: '5px'
-    , backgroundColor: 'rgba(0,0,0,0.5)'
+    , backgroundColor: 'darkslategrey'
     , color: '#fafafa'
     , fontSize: '20px'
     , cursor: 'pointer'
     , marginBottom: '20px'
+    , border: '2px solid'
 };
 
 
