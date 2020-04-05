@@ -72,16 +72,12 @@ const Directions =
                                   onClick={() => changeRoom(room)} 
                                   text={text}
                               />
-                              <span style={styles.iconContainer}>
-                                  <Icon 
-                                      isUnlocked={
-                                          isUnlocked({
-                                              room: rooms[room]
-                                              , itemsUsed: inventory.itemsUsed
-                                          })
-                                      }
-                                  />
-                              </span>
+                              { !isUnlocked({
+                                  room: rooms[room]
+                                  , itemsUsed: inventory.itemsUsed
+                              }) && <span style={styles.iconContainer}>
+                                  <img src="./images/locked.svg" alt="a locked padlock" style={styles.icon} />
+                              </span> }
                           </span>
                   )
               }

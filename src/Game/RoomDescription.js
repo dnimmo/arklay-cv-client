@@ -3,7 +3,8 @@ import { GameContext } from './GameContext';
 
 
 const style = {
-    minHeight: '20vh'
+    minHeight: '30vh'
+    , padding: '5vh 20vw'
 };
 
 

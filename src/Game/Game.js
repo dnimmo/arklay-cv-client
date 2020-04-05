@@ -32,7 +32,7 @@ const Game =
                         <Directions />
                         <Button 
                             onClick={showInventory}
-                            text="Show inventory"
+                            text="Inventory"
                         />
                     </section>
                 );
@@ -44,7 +44,7 @@ const Game =
                         <Inventory />
                         <Button 
                             onClick={ hideInventory }
-                            text="Hide inventory"
+                            text="Close inventory"
                         />
                     </section>
                 );
