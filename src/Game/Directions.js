@@ -25,7 +25,7 @@ const styles = {
         , display: 'inline-block'
     }
     , directionsContainer: {
-        minHeight: '20vh'
+        minHeight: '35vh'
     }
 };
 

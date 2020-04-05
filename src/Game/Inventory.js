@@ -7,7 +7,7 @@ import { id } from '../utils';
 
 const styles = {
     inventoryContainer: {
-        minHeight: '20vh'
+        minHeight: '35vh'
     }
 };
 
