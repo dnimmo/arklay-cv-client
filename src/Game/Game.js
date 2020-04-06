@@ -7,11 +7,15 @@ import Button from '../components/Button';
 import RoomDescription from './RoomDescription';
 
 
-const inventoryButton = 
-  numberOfItems => 
-      numberOfItems > 0 
-          ? { opacity: '1'}
-          : { opacity: '0.5'};
+const styles = 
+  { inventoryButton: 
+      numberOfItems => 
+          ({ marginLeft: '20px'
+              , opacity: numberOfItems > 0 
+                  ? '1'
+                  : '0.5'
+          })
+  };
 
 
 const Game = 
@@ -19,6 +23,7 @@ const Game =
       const { 
           gameState
           , showInventory
+          , examineRoom
       } = 
         React.useContext(GameContext);
 
@@ -38,12 +43,16 @@ const Game =
                 return (
                     <section>
                         <Directions />
-                        <span style={inventoryButton(inventory.itemsHeld.length)}>
+                        <Button 
+                            onClick={examineRoom}
+                            text="Examine room"
+                        />
+                        <span style={styles.inventoryButton(inventory.itemsHeld.length)}>
                             <Button 
                                 onClick={showInventory}
                                 text="Inventory"
                             />
-                        </span>
+                        </span>  
                     </section>
                 );
 
@@ -66,6 +75,7 @@ const Game =
             }
         };
 
+        
       return (
           <div>
               <RoomDescription />
