@@ -43,10 +43,25 @@ const rooms = {
         , item: null
         , availableDirections: 
           [ { 
-              text: 'Leave'
+              text: 'North'
               , room: 'START'
               , itemsThatCanBeUsed: []
           } 
+          , { 
+              text: 'West'
+              , room: 'START'
+              , itemsThatCanBeUsed: []
+          } 
+          , { 
+              text: 'East'
+              , room: 'START'
+              , itemsThatCanBeUsed: []
+          }, 
+          { 
+              text: 'South'
+              , room: 'START'
+              , itemsThatCanBeUsed: []
+          }  
           ]
         , descriptionWhenExamined : 'This place is weird.'
         , unlockRequirements: ['TEST_ITEM']
