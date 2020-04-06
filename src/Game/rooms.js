@@ -35,17 +35,22 @@ const rooms = {
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , TEST: {
-        intro: 'Does this work?'
-        , surroundings: 'Test room'
+        name: 'Test'
+        , intro: 'Now you\'re inside. Well done!'
+        , surroundings: 'There\'s a large door behind you.'
+        , surroundingsWhenItemPickedUp: null
+        , surroundingsWhenItemUsed: null
+        , item: null
         , availableDirections: 
           [ { 
-              text: 'Go back'
+              text: 'Leave'
               , room: 'START'
-              , itemsThatCanBeUsed: null
-          }
+              , itemsThatCanBeUsed: []
+          } 
           ]
+        , descriptionWhenExamined : 'This place is weird.'
         , unlockRequirements: ['TEST_ITEM']
-        , messageOnUnsuccessfulEntryAttempt: 'What is the magic word?'
+        , messageOnUnsuccessfulEntryAttempt: 'The door is locked! Rude.'
     }
 };
 

@@ -15,6 +15,8 @@ const styles =
                   ? '1'
                   : '0.5'
           })
+  , message: 
+          { minHeight: '20px'}
   };
 
 
@@ -44,6 +46,7 @@ const Game =
                 return (
                     <section>
                         <Directions />
+                        <p style={styles.message}>{message}</p>
                         <Button 
                             onClick={() => examineRoom(currentRoom)}
                             text="Examine room"
@@ -62,6 +65,7 @@ const Game =
                 return (
                     <section>
                         <Directions />
+                        <p style={styles.message}>{message}</p>
                         <Inventory />
                     </section>
                 );
@@ -81,8 +85,6 @@ const Game =
           <div>
               <RoomDescription />
               { chooseState(state) } 
-              { message && <p>{message}</p>
-              }
           </div>
       );
   };
