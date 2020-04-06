@@ -1,7 +1,72 @@
-import { itemCanBeUsed } from '../../src/Game/items';
+import { 
+    itemCanBeUsed
+    , itemHasBeenPickedUp 
+} from '../../src/Game/items';
 
 
 describe('Game/items', () => {
+    describe('check to see if item has been picked up', () => {
+        const item = 'TEST_ITEM';
+
+
+        test('reports that item has not been picked up if it does not appear in inventory at all', () => {
+            const expected = 
+              false;
+
+
+            const actual = 
+              itemHasBeenPickedUp({
+                  item,
+                  inventory: { 
+                      itemsHeld: []
+                      , itemsUsed: []
+                  }
+              });
+
+
+            expect(actual).toBe(expected);
+        });
+
+
+        test('reports that item has been picked up if it appears in held items', () => {
+            const expected = 
+              true;
+
+
+            const actual = 
+              itemHasBeenPickedUp({
+                  item,
+                  inventory: { 
+                      itemsHeld: [ item ]
+                      , itemsUsed: []
+                  }
+              });
+
+
+            expect(actual).toBe(expected);
+        });
+
+
+        test('reports that item has been picked up if it appears in used items', () => {
+            const expected = 
+              true;
+
+
+            const actual = 
+              itemHasBeenPickedUp({
+                  item,
+                  inventory: { 
+                      itemsHeld: [ ]
+                      , itemsUsed: [ item ]
+                  }
+              });
+
+
+            expect(actual).toBe(expected);
+        });
+    });
+
+
     describe('check to see if item can be used in current room', () => {
         const availableDirections = 
           [ { itemsThatCanBeUsed: ['TEST_ITEM'] } ];
