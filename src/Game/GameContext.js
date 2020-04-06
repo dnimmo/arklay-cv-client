@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import rooms, { isUnlocked } from './rooms';
-import items, { itemCanBeUsed } from './items';
+import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
 
 export
 const GameContext =
@@ -19,7 +19,7 @@ const initialState = {
     state: states.DISPLAYING_DIRECTIONS
     , currentRoom: rooms.START
     , inventory: {
-        itemsHeld: [ 'TEST_ITEM' ]
+        itemsHeld: []
         , itemsUsed: []
     }
     , message: null  // This is used to give temporary contextual info to the player
@@ -86,6 +86,35 @@ const update =
           );
 
 
+
+      case actions.EXAMINE_ROOM: 
+          return (
+              !state.currentRoom.item 
+                  ? {
+                      ...state
+                      , message: state.currentRoom.descriptionWhenExamined
+                  }
+                  : itemHasBeenPickedUp({ 
+                      item: state.currentRoom.item
+                      , inventory: state.inventory
+                  }) 
+                      ? {
+                          ...state
+                          , message: 
+                              state.currentRoom.descriptionWhenExamined
+                      }
+                      : { ...state
+                          , inventory: 
+                              { ...state.inventory
+                                  , itemsHeld: state.inventory.itemsHeld.concat(state.currentRoom.item)
+                              }
+                          , message: 
+                            `${items[state.currentRoom.item].name} has been added to your inventory`
+                      }
+            
+          );
+
+      
       case actions.USE_ITEM:
           return (
               itemCanBeUsed({
@@ -179,12 +208,25 @@ const GameProvider =
         );
 
 
+      const examineRoom =
+        useCallback(
+            (roomKey) => {
+                dispatch({
+                    type: actions.EXAMINE_ROOM,
+                    payload: roomKey
+                });
+            },
+            [dispatch]
+        );
+
+
       const value = { 
           gameState
           , hideInventory
           , showInventory
           , changeRoom
           , attemptToUseItem
+          , examineRoom
       };
 
 

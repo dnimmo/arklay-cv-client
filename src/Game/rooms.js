@@ -22,7 +22,7 @@ const rooms = {
         , surroundings: 'There\'s a large door in front of you.'
         , surroundingsWhenItemPickedUp: null
         , surroundingsWhenItemUsed: null
-        , item: null
+        , item: 'TEST_ITEM'
         , availableDirections: 
           [ { 
               text: 'Enter'
@@ -30,7 +30,7 @@ const rooms = {
               , itemsThatCanBeUsed: ['TEST_ITEM']
           } 
           ]
-        , descriptionWhenExamined : 'It\'s really cold out here.'
+        , descriptionWhenExamined : 'This was where I found the test item'
         , unlockRequirements: null
         , messageOnUnsuccessfulEntryAttempt: null
     }

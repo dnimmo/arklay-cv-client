@@ -32,6 +32,7 @@ const Game =
           state
           , message
           , inventory
+          , currentRoom
       } = 
         gameState;
 
@@ -44,7 +45,7 @@ const Game =
                     <section>
                         <Directions />
                         <Button 
-                            onClick={examineRoom}
+                            onClick={() => examineRoom(currentRoom)}
                             text="Examine room"
                         />
                         <span style={styles.inventoryButton(inventory.itemsHeld.length)}>
@@ -75,7 +76,7 @@ const Game =
             }
         };
 
-        
+
       return (
           <div>
               <RoomDescription />
