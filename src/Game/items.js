@@ -9,6 +9,13 @@ const itemCanBeUsed =
       );
 
 
+export
+const itemHasBeenPickedUp =
+  ({ item, inventory }) => 
+      inventory.itemsHeld.includes(item)
+        || inventory.itemsUsed.includes(item);
+
+
 const items = 
   {
       TEST_ITEM: { 
