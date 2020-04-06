@@ -11,6 +11,9 @@ const style = {
     , cursor: 'pointer'
     , marginBottom: '20px'
     , border: '2px solid'
+    , '&:hover': {
+        display: 'none'
+    }
 };
 
 

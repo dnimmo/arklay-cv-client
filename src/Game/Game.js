@@ -6,12 +6,19 @@ import Error from '../Error';
 import Button from '../components/Button';
 import RoomDescription from './RoomDescription';
 
+
+const inventoryButton = 
+  numberOfItems => 
+      numberOfItems > 0 
+          ? { opacity: '1'}
+          : { opacity: '0.5'};
+
+
 const Game = 
   () => { 
       const { 
           gameState
-          , showInventory 
-          , hideInventory
+          , showInventory
       } = 
         React.useContext(GameContext);
 
@@ -19,6 +26,7 @@ const Game =
       const { 
           state
           , message
+          , inventory
       } = 
         gameState;
 
@@ -30,10 +38,12 @@ const Game =
                 return (
                     <section>
                         <Directions />
-                        <Button 
-                            onClick={showInventory}
-                            text="Inventory"
-                        />
+                        <span style={inventoryButton(inventory.itemsHeld.length)}>
+                            <Button 
+                                onClick={showInventory}
+                                text="Inventory"
+                            />
+                        </span>
                     </section>
                 );
 
@@ -41,11 +51,8 @@ const Game =
             case states.DISPLAYING_INVENTORY:
                 return (
                     <section>
+                        <Directions />
                         <Inventory />
-                        <Button 
-                            onClick={ hideInventory }
-                            text="Close inventory"
-                        />
                     </section>
                 );
 

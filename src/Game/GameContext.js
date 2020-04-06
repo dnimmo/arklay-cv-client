@@ -73,10 +73,16 @@ const update =
                       , currentRoom: rooms[action.payload]
                       , message: null
                   }
-                  : { 
-                      ...state
-                      , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
-                  }
+                  : state.inventory.itemsHeld.length > 0 
+                      ? { 
+                          ...state
+                          , state: states.DISPLAYING_INVENTORY
+                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                      }
+                      : { 
+                          ...state
+                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                      }
           );
 
 

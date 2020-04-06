@@ -10,6 +10,7 @@ const styles = {
     icon : { 
         height: '16px' 
         , width: 'auto'
+        , minWidth: '16px'
     }
     , iconContainer: {
         backgroundColor: '#fafafa'
