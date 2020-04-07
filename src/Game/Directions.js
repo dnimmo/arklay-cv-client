@@ -41,11 +41,11 @@ const styles = {
         , gridRow: '2'
     }
     , east: {
-        gridColumn: '1'
+        gridColumn: '3'
         , gridRow: '3'
     }
     , west: {
-        gridColumn: '3'
+        gridColumn: '1'
         , gridRow: '3'
     }
     , south: {
