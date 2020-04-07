@@ -138,10 +138,10 @@ const rooms = {
     , UPSTAIRS_SECRET_ROOM_THREE: { 
         name: 'Upstairs secret room'
         , intro: 'A small room with a podium in the center.'
-        , surroundings: 'A crest depicting a Lion sits neatly on the podium. It looks important'
+        , surroundings: 'A crest depicting a lion sits neatly on the podium. It looks important.'
         , surroundingsWhenItemPickedUp: 'The room is completely empty. The podium stands bare.'
         , surroundingsWhenItemUsed: null
-        , item: null
+        , item: 'LION_CREST'
         , availableDirections: 
             [ { text: 'East'
                 , room: 'UPSTAIRS_STUDY'
