@@ -160,7 +160,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             ]
-        , descriptionWhenExamined : 'This was where I found the Lion Crest'
+        , descriptionWhenExamined : 'This was where I found the Lion Crest.'
         , unlockRequirements: ['KEY_CODE']
         , messageOnUnsuccessfulEntryAttempt: null
     }
@@ -169,7 +169,7 @@ const rooms = {
         , intro: 'The top of a stairway. To the North is a fancy door with three indentations, and there is a much more plain door to the East'
         , surroundings: 'What could be behind the door?'
         , surroundingsWhenItemPickedUp: null
-        , surroundingsWhenItemUsed: 'Looks like it needs three crests to open'
+        , surroundingsWhenItemUsed: 'Looks like it needs three crests to open.'
         , item: null
         , availableDirections: 
             [ { text: 'North'
@@ -191,7 +191,7 @@ const rooms = {
     }
     , UPSTAIRS_MASTER_BEDROOM: { 
         name: 'Upstairs master bedroom'
-        , intro: 'A fantastically ostentatious master bedroom, with a roaring fireplace and a huge four-poster bed'
+        , intro: 'A fantastically ostentatious master bedroom, with a roaring fireplace and a huge four-poster bed.'
         , surroundings: 'There are two doors here.'
         , surroundingsWhenItemPickedUp: null
         , surroundingsWhenItemUsed: null
@@ -341,7 +341,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             ]
-        , descriptionWhenExamined : 'This was where I found the Utility Key'
+        , descriptionWhenExamined : 'This was where I found the Utility Key.'
         , unlockRequirements: ['CROWBAR']
         , messageOnUnsuccessfulEntryAttempt: null
     }
@@ -358,13 +358,13 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             ]
-        , descriptionWhenExamined : 'This was where I found the Sheet Music'
+        , descriptionWhenExamined : 'This was where I found the Sheet Music.'
         , unlockRequirements: null
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , UPSTAIRS_HALLWAY_FOUR: {
         name: 'Upstairs hallway'
-        , intro: 'A hallway'
+        , intro: 'A hallway.'
         , surroundings: 'It\'s amazing that all of these hallways look so different from one another.'
         , surroundingsWhenItemPickedUp: null
         , surroundingsWhenItemUsed: null
@@ -389,7 +389,7 @@ const rooms = {
     }
     , UPSTAIRS_SECOND_BEDROOM: {
         name: 'Upstairs second bedroom'
-        , intro: 'A well-furnished bedroom'
+        , intro: 'A well-furnished bedroom.'
         , surroundings: 'It looks like this room has never been used. There\'s an en-suite to the South, and a door leading to a hallway to the North.'
         , surroundingsWhenItemPickedUp: null
         , surroundingsWhenItemUsed: null
@@ -604,7 +604,7 @@ const rooms = {
     , WASTE_DISPOSAL: {
         name: 'Waste disposal'
         , intro: 'A room that is completely empty, except for a hatch at the back, that appears to be a waste disposal chute.'
-        , surroundings: 'Unfortunately it doesn\'t have a handle, so can\'t be opened'
+        , surroundings: 'Unfortunately it doesn\'t have a handle, so can\'t be opened.'
         , surroundingsWhenItemPickedUp: null
         , surroundingsWhenItemUsed: 'What could be at the bottom?'
         , item: null
@@ -776,7 +776,7 @@ const rooms = {
     , SECRET_ROOM_ONE: {
         name: 'Secret room'
         , intro: 'A well-hidden room.'
-        , surroundings: 'A room that is completely empty, save for a stone podium with a crest on top of it'
+        , surroundings: 'A room that is completely empty, save for a stone podium with a crest on top of it.'
         , surroundingsWhenItemPickedUp: 'The room is completely empty, except for the podium in the middle, where you found a crest.'
         , surroundingsWhenItemUsed: null
         , item: 'EAGLE_CREST'
