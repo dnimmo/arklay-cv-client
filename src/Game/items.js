@@ -16,6 +16,14 @@ const itemHasBeenPickedUp =
         || inventory.itemsUsed.includes(item);
 
 
+export
+const itemHasBeenUsed =
+  ({ item, inventory }) => 
+      inventory
+          .itemsUsed
+          .includes(item);
+  
+
 const items = 
   { LION_CREST: { 
       name: 'Lion Crest'

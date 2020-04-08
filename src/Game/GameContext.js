@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import rooms, { isUnlocked } from './rooms';
+import rooms, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms';
 import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
 
 export
@@ -77,11 +77,13 @@ const update =
                       ? { 
                           ...state
                           , state: states.DISPLAYING_INVENTORY
-                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt 
+                            || defaultUnsuccessfulEntryAttemptMessage
                       }
                       : { 
                           ...state
-                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt
+                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt 
+                            || defaultUnsuccessfulEntryAttemptMessage
                       }
           );
 
