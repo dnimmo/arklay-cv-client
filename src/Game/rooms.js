@@ -868,9 +868,9 @@ const rooms = {
     }
     , SERVANTS_QUARTERS: {
         name: 'Servants\' quarters'
-        , intro: 'The servants\' quarters'
+        , intro: 'The servants\' quarters.'
         , surroundings: 'It\'s actually pretty nice in here. For some reason, the head of a statue is sitting on a table in the corner.'
-        , surroundingsWhenItemPickedUp: 'It\'s actaully pretty nice in here. But who were these people serving?'
+        , surroundingsWhenItemPickedUp: 'It\'s actually pretty nice in here. But who were these people serving?'
         , surroundingsWhenItemUsed: null
         , item: 'STATUE_HEAD'
         , availableDirections: 
