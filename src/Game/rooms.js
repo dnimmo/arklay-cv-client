@@ -308,7 +308,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             , { text: 'South'
-                , rom: 'UPSTAIRS_LIBRARY'
+                , room: 'UPSTAIRS_LIBRARY'
                 ,  itemsThatCanBeUsed: []
             }
             ]
@@ -914,6 +914,10 @@ const rooms = {
         , availableDirections: 
             [ { text: 'Upstairs'
                 , room: 'UPSTAIRS_STAIRWAY_TWO'
+                , itemsThatCanBeUsed: []
+            }
+            , { text: 'West'
+                , room: 'HALLWAY_THREE'
                 , itemsThatCanBeUsed: []
             }
             ]
