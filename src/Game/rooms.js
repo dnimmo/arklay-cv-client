@@ -1,3 +1,8 @@
+export
+const defaultUnsuccessfulEntryAttemptMessage =
+  'Hm, it seems you can\'t go that way.';
+
+
 export 
 const isUnlocked =
   ({ room, itemsUsed }) => {
@@ -13,7 +18,14 @@ const isUnlocked =
 
       return unlockRequirementsMet;
   };
-    
+ 
+  
+export
+const anItemCanBeUsed = 
+  ({ availableDirections }) => 
+      availableDirections
+          .some(({itemsThatCanBeUsed}) => itemsThatCanBeUsed.length > 0);
+  
 
 const rooms = {
     START: { 
