@@ -195,7 +195,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'It\'s so much hotter in here than anywhere else. The fire must have been burning for a while now.'
-        , unlockRequirements: null
+        , unlockRequirements: ['LION_CREST', 'WOLF_CREST', 'EAGLE_CREST']
         , messageOnUnsuccessfulEntryAttempt: 'Hm, looks like it needs three crests to open.'
     }
     , UPSTAIRS_MASTER_EN_SUITE: { 
@@ -204,7 +204,7 @@ const rooms = {
         , surroundings: 'There\'s a very expensive, but sadly empty, bottle of wine sitting by the sink.'
         , surroundingsWhenItemPickedUp: 'Empty wine glasses stand on the floor by the bath.'
         , surroundingsWhenItemUsed: null
-        , item: null
+        , item: 'WINE_BOTTLE'
         , availableDirections: 
             [ { text: 'East'
                 , room: 'UPSTAIRS_MASTER_BEDROOM'
@@ -330,7 +330,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'This was wear I found the Utility Key'
-        , unlockRequirements: null
+        , unlockRequirements: ['CROWBAR']
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , UPSTAIRS_LIBRARY: {
@@ -515,7 +515,7 @@ const rooms = {
             }
             , { text: 'East'
                 , room: 'UTILITY_ROOM'
-                , itemsThatCanBeUsed: []
+                , itemsThatCanBeUsed: ['UTILITY_KEY']
             }
             , { text: 'South'
                 , room: 'DINING_HALL'
@@ -544,7 +544,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'Someone, somewhere, is probably screaming at me not to go down those stairs.'
-        , unlockRequirements: null
+        , unlockRequirements: ['UTILITY_KEY']
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , KITCHEN: {
@@ -775,7 +775,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'This was where I found the eagle crest.'
-        , unlockRequirements: null
+        , unlockRequirements: ['SHEET_MUSIC']
         , messageOnUnsuccessfulEntryAttempt: null  
     }
     , STATUE_ROOM: {
@@ -824,8 +824,8 @@ const rooms = {
         name: 'Hallway'
         , intro: 'A hallway.'
         , surroundings: 'This hallway is quite large. There\'s a locked door to the North with a plaque that reads "Servants\' Quarters".'
-        , surroundingsWhenItemPickedUp: 'This hallway is quite large. The door to the servants\' quarters is unlocked.'
-        , surroundingsWhenItemUsed: null
+        , surroundingsWhenItemPickedUp: null
+        , surroundingsWhenItemUsed: 'This hallway is quite large. The door to the servants\' quarters is unlocked.'
         , item: null
         , availableDirections: 
           [ { text: 'North'
@@ -884,7 +884,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'This is where I found that statue\'s head.'
-        , unlockRequirements: null
+        , unlockRequirements: ['SMALL_KEY']
         , messageOnUnsuccessfulEntryAttempt: null  
     }
     , SERVANTS_BATHROOM: {
@@ -1019,7 +1019,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'I really do not want to be here any more.'
-        , unlockRequirements: null
+        , unlockRequirements: ['HANDLE']
         , messageOnUnsuccessfulEntryAttempt: null  
     }
     , BASEMENT_WINE_CELLAR: {
@@ -1059,7 +1059,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : '...'
-        , unlockRequirements: null
+        , unlockRequirements: ['WINE_BOTTLE']
         , messageOnUnsuccessfulEntryAttempt: null  
     }
     , END: {
