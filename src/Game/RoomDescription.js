@@ -13,6 +13,7 @@ const style = {
 const chooseSurroundings = 
   ({ room, inventory }) => {
       // This only works because there are no rooms that both contain an item and in which you can use an item.
+      // This was an intentional design choice, but this function needs to be revisited if that changes.
       if (room.item) {
           return ( 
               itemHasBeenPickedUp({ item: room.item, inventory })
