@@ -61,6 +61,10 @@ const styles = {
         gridColumn: '2'
         , gridRow: '3'
     }
+    , end: {
+        gridColumn: '2'
+        , gridRow: '3'
+    }
 };
 
 
