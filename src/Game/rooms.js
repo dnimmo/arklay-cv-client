@@ -420,7 +420,7 @@ const rooms = {
                 , room: 'UPSTAIRS_SECOND_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
-            , { text: 'WEST'
+            , { text: 'West'
                 , room: 'UPSTAIRS_THIRD_BEDROOM'
                 , itemsThatCanBeUsed: []
             }
