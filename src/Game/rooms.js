@@ -341,7 +341,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             ]
-        , descriptionWhenExamined : 'This was wear I found the Utility Key'
+        , descriptionWhenExamined : 'This was where I found the Utility Key'
         , unlockRequirements: ['CROWBAR']
         , messageOnUnsuccessfulEntryAttempt: null
     }
@@ -358,7 +358,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             ]
-        , descriptionWhenExamined : 'This was wear I found the Sheet Music'
+        , descriptionWhenExamined : 'This was where I found the Sheet Music'
         , unlockRequirements: null
         , messageOnUnsuccessfulEntryAttempt: null
     }
