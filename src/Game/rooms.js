@@ -244,22 +244,23 @@ const rooms = {
         , surroundingsWhenItemUsed: null
         , item: null
         , availableDirections: 
-            [ { text: 'West'
-                , room: 'UPSTAIRS_STAIRWAY_THREE'
-                , itemsThatCanBeUsed: []
-            }
-            , { text: 'North'
-                , room: 'UPSTAIRS_TROPHY_ROOM'
-                , itemsThatCanBeUsed: []
-            }
-            , { text: 'East'
-                , room: 'UPSTAIRS_ART_GALLERY'
-                , itemsThatCanBeUsed: []
-            }
-            , { text: 'South'
-                , rom: 'UPSTAIRS_STUDY'
-                ,  itemsThatCanBeUsed: []
-            }
+            [ 
+                { text: 'West'
+                    , room: 'UPSTAIRS_STAIRWAY_THREE'
+                    , itemsThatCanBeUsed: []
+                }
+                , { text: 'North'
+                    , room: 'UPSTAIRS_TROPHY_ROOM'
+                    , itemsThatCanBeUsed: []
+                }
+                , { text: 'East'
+                    , room: 'UPSTAIRS_ART_GALLERY'
+                    , itemsThatCanBeUsed: []
+                }
+                , { text: 'South'
+                    , room: 'UPSTAIRS_STUDY'
+                    ,  itemsThatCanBeUsed: []
+                }
             ]
         , descriptionWhenExamined : 'It\'s easy to feel lost here. Every door in this room looks the same.'
         , unlockRequirements: null
