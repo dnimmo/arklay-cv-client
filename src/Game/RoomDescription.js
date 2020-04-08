@@ -26,8 +26,10 @@ const chooseSurroundings =
           return (
               inventory
                   .itemsUsed
-                  .some(item => itemCanBeUsed({item, availableDirections: room.availableDirections}) 
-                  && itemHasBeenUsed({ item, inventory}))
+                  .some(item => 
+                      itemCanBeUsed({item, availableDirections: room.availableDirections}) 
+                      && itemHasBeenUsed({ item, inventory})
+                  )
                   ? room.surroundingsWhenItemUsed
                   : room.surroundings
           );
