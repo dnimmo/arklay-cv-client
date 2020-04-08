@@ -22,6 +22,11 @@ const styles = {
         , position: 'absolute'
     }
     , directionsContainer: {
+        maxWidth: '600px'
+        , marginRight: 'auto'
+        , marginLeft: 'auto'
+    }
+    , directionsGrid: {
         minHeight: '35vh'
         , display: 'grid'
         , gridTemplateColumns: '33.3% 33.3% 33.3%'
@@ -88,29 +93,31 @@ const Directions =
   
         
       return (
-          <div style={styles.directionsContainer}>
-              { currentRoom
-                  .availableDirections
-                  .map(
-                      ({ text, room }) => 
-                          <span 
-                              key={id()}
-                              style={styles[text.toLowerCase()]}
-                          >
-                              <Button 
-                                  onClick={() => changeRoom(room)} 
-                                  text={text}
-                              />
-                              { !isUnlocked({
-                                  room: rooms[room]
-                                  , itemsUsed: inventory.itemsUsed
-                              }) && <span style={styles.iconContainer}>
-                                  <img src="./images/locked.svg" alt="a locked padlock" style={styles.icon} />
-                              </span> }
-                          </span>
-                  )
-              }
-          </div>
+          <section style={styles.directionsContainer}>
+              <div style={styles.directionsGrid}>
+                  { currentRoom
+                      .availableDirections
+                      .map(
+                          ({ text, room }) => 
+                              <span 
+                                  key={id()}
+                                  style={styles[text.toLowerCase()]}
+                              >
+                                  <Button 
+                                      onClick={() => changeRoom(room)} 
+                                      text={text}
+                                  />
+                                  { !isUnlocked({
+                                      room: rooms[room]
+                                      , itemsUsed: inventory.itemsUsed
+                                  }) && <span style={styles.iconContainer}>
+                                      <img src="./images/locked.svg" alt="a locked padlock" style={styles.icon} />
+                                  </span> }
+                              </span>
+                      )
+                  }
+              </div>
+          </section>
       );
   };
 
