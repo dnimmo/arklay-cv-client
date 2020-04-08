@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ApplicationContext } from './ApplicationContext';
 import Button from '../components/Button';
-import playMusic from './playMusic';
+import playMusic from '../audio';
 
 const styles = {
     container: {
@@ -28,7 +28,7 @@ const TitleScreen =
               <div>
                   <Button 
                       onClick={() => {
-                          playMusic();
+                          playMusic('The_Dark_Place.mp3');
                           startGame();
                       }
                       }

@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import rooms, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms';
 import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
+import playSoundEffect from '../audio';
 
 export
 const GameContext =
@@ -92,27 +93,30 @@ const update =
       case actions.EXAMINE_ROOM: 
           return (
               !state.currentRoom.item 
-                  ? {
-                      ...state
-                      , message: state.currentRoom.descriptionWhenExamined
-                  }
+                  ? playSoundEffect('failure.wav') 
+                    || {
+                        ...state
+                        , message: state.currentRoom.descriptionWhenExamined
+                    }
                   : itemHasBeenPickedUp({ 
                       item: state.currentRoom.item
                       , inventory: state.inventory
                   }) 
-                      ? {
-                          ...state
-                          , message: 
+                      ? playSoundEffect('failure.wav') 
+                        || {
+                            ...state
+                            , message: 
                               state.currentRoom.descriptionWhenExamined
-                      }
-                      : { ...state
-                          , inventory: 
+                        }
+                      : playSoundEffect('success_chime.wav') 
+                        || { ...state
+                            , inventory: 
                               { ...state.inventory
                                   , itemsHeld: state.inventory.itemsHeld.concat(state.currentRoom.item)
                               }
-                          , message: 
+                            , message: 
                             `${items[state.currentRoom.item].name} has been added to your inventory`
-                      }
+                        }
             
           );
 
@@ -123,29 +127,31 @@ const update =
                   availableDirections: state.currentRoom.availableDirections
                   , item: action.payload
               })
-                  ? {
-                      ...state
-                      , state: states.DISPLAYING_DIRECTIONS
-                      , message: items[action.payload].messageWhenUsed
-                      , inventory: {
-                          itemsHeld: 
+                  ? playSoundEffect(items[action.payload].soundWhenUsed) 
+                    || {
+                        ...state
+                        , state: states.DISPLAYING_DIRECTIONS
+                        , message: items[action.payload].messageWhenUsed
+                        , inventory: {
+                            itemsHeld: 
                               state
                                   .inventory
                                   .itemsHeld
                                   .filter(x => 
                                       x !== action.payload
                                   )
-                          , itemsUsed: 
+                            , itemsUsed: 
                               state
                                   .inventory
                                   .itemsUsed
                                   .concat(action.payload)
-                      }
-                  }
-                  : {
-                      ...state
-                      , message: items[action.payload].messageWhenNotUsed
-                  }
+                        }
+                    }
+                  : playSoundEffect('failure.wav') 
+                    || {
+                        ...state
+                        , message: items[action.payload].messageWhenNotUsed
+                    }
           );
 
 
