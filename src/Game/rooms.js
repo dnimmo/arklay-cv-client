@@ -161,7 +161,7 @@ const rooms = {
             }
             ]
         , descriptionWhenExamined : 'This was where I found the Lion Crest'
-        , unlockRequirements: null
+        , unlockRequirements: ['KEY_CODE']
         , messageOnUnsuccessfulEntryAttempt: null
     }
     , UPSTAIRS_STAIRWAY_THREE: { 
