@@ -375,7 +375,7 @@ const rooms = {
                 , itemsThatCanBeUsed: []
             }
             , { text: 'East'
-                , room: 'UPSTAIRS_HALLWAY_TWO'
+                , room: 'UPSTAIRS_STAIRWAY_TWO'
                 , itemsThatCanBeUsed: []
             }
             , { text: 'South'
