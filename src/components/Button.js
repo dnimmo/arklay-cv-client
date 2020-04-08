@@ -13,6 +13,7 @@ const StyledButton =
   cursor: pointer;
   margin-bottom: 20px;
   border-width: 2px;
+  border-color: #fafafa;
   transition: all 0.2s;
   &:hover {
       border-color: darkslategrey;
