@@ -1,30 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 
-const style = { 
-    padding: '10px 20px'
-    , borderRadius: '5px'
-    , backgroundColor: 'darkslategrey'
-    , color: '#fafafa'
-    , fontSize: '16px'
-    , cursor: 'pointer'
-    , marginBottom: '20px'
-    , border: '2px solid'
-    , '&:hover': {
-        display: 'none'
-    }
-};
+const StyledButton =
+  styled.button`
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: darkslategrey;
+  color: #fafafa;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: '2px solid';
+  transition: all 0.2s;
+  &:hover {
+      border-color: darkslategrey;
+      color: darkslategrey;
+      background-color: #fafafa;
+  }`;
+
 
 
 const Button = 
   ({ onClick, text }) => 
-      <button 
+      <StyledButton
           onClick={onClick}
-          style={style}
       >
           {text}
-      </button>;
+      </StyledButton>;
 
 
 Button.propTypes = {
