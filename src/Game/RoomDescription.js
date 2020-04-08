@@ -6,7 +6,7 @@ import { itemHasBeenPickedUp, itemHasBeenUsed } from './items';
 
 const style = {
     minHeight: '40vh'
-    , padding: '5vh 20vw'
+    , padding: '5vh 10vw'
 };
 
 

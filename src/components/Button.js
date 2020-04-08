@@ -22,7 +22,6 @@ const StyledButton =
   }`;
 
 
-
 const Button = 
   ({ onClick, text }) => 
       <StyledButton

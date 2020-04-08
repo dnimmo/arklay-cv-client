@@ -16,7 +16,9 @@ const styles =
                   : '0.5'
           })
   , message: 
-          { minHeight: '20px'}
+          { minHeight: '20px'
+              , padding: '0 10vw'
+          }
   };
 
 
