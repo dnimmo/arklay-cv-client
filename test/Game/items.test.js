@@ -1,10 +1,50 @@
 import { 
     itemCanBeUsed
-    , itemHasBeenPickedUp 
+    , itemHasBeenPickedUp
+    , itemHasBeenUsed 
 } from '../../src/Game/items';
 
 
 describe('Game/items', () => {
+    describe('check to see if item has been used', () => {
+        const item = 'TEST_ITEM';
+
+        
+        test('reports that item has been used if it appears in itemsUsed', () => {
+            const inventory = { itemsUsed: [item] };
+            
+            
+            const expected = 
+              true;
+
+
+            const actual =
+              itemHasBeenUsed({ item, inventory });
+
+
+            expect(actual)
+                .toBe(expected);
+        });
+
+
+        test('reports that item has not been used if it does not appear in itemsUsed', () => {
+            const inventory = { itemsUsed: [] };
+          
+          
+            const expected = 
+              false;
+
+
+            const actual =
+              itemHasBeenUsed({ item, inventory });
+
+
+            expect(actual)
+                .toBe(expected);
+        });
+    });
+
+
     describe('check to see if item has been picked up', () => {
         const item = 'TEST_ITEM';
 
