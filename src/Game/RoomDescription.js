@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameContext } from './GameContext';
 import { anItemCanBeUsed } from './rooms';
-import { itemHasBeenPickedUp, itemHasBeenUsed } from './items';
+import { itemHasBeenPickedUp, itemHasBeenUsed, itemCanBeUsed } from './items';
 
 
 const style = {
@@ -26,7 +26,8 @@ const chooseSurroundings =
           return (
               inventory
                   .itemsUsed
-                  .some(item => itemHasBeenUsed({ item, inventory}))
+                  .some(item => itemCanBeUsed({item, availableDirections: room.availableDirections}) 
+                  && itemHasBeenUsed({ item, inventory}))
                   ? room.surroundingsWhenItemUsed
                   : room.surroundings
           );
