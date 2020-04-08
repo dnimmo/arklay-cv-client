@@ -12,7 +12,7 @@ const StyledButton =
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 20px;
-  border: '2px solid';
+  border-width: 2px;
   transition: all 0.2s;
   &:hover {
       border-color: darkslategrey;
