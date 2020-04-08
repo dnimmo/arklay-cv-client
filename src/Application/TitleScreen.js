@@ -37,11 +37,7 @@ const TitleScreen =
               </div>
               <div>
                   <Button 
-                      onClick={() => {
-                          playMusic();
-                          startGame();
-                      }
-                      }
+                      onClick={startGame}
                       text="Start game (without sound)"
                   />
               </div>
