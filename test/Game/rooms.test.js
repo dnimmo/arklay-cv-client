@@ -24,6 +24,26 @@ describe('Game/rooms', () => {
             expect(actual)
                 .toBe(expected);
         });
+
+
+        test('reports that an item can not be used if there are no unlock requirements', () => {
+            const room = 
+                { availableDirections: 
+                    [ { itemsThatCanBeUsed: [] } ] 
+                };
+
+
+            const expected = 
+                false;
+
+            
+            const actual =
+                anItemCanBeUsed(room);
+
+            
+            expect(actual)
+                .toBe(expected);
+        });
     });
 
 
