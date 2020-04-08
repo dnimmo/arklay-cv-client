@@ -25,14 +25,26 @@ const TitleScreen =
               style={styles.container}>
               <h1>Project Arklay</h1>
               <p style={styles.introText}>Your head hurts. You&apos;re not sure where you are, and you definitely don&apos;t know how you got here. There&apos;s rain thrashing the ground all around you. You figure you might as well try and understand what the Hell is going on...</p>
-              <Button 
-                  onClick={() => {
-                      playMusic();
-                      startGame();
-                  }
-                  }
-                  text="Start game"
-              />
+              <div>
+                  <Button 
+                      onClick={() => {
+                          playMusic();
+                          startGame();
+                      }
+                      }
+                      text="Start game"
+                  />
+              </div>
+              <div>
+                  <Button 
+                      onClick={() => {
+                          playMusic();
+                          startGame();
+                      }
+                      }
+                      text="Start game (without sound)"
+                  />
+              </div>
           </div>
       );
   };
