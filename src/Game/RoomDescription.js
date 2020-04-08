@@ -22,11 +22,16 @@ const chooseSurroundings =
 
       if (anItemCanBeUsed(room)) {
           return (
-              inventory.itemsUsed.some(item => itemHasBeenUsed({ item, inventory}))
+              inventory
+                  .itemsUsed
+                  .some(item => itemHasBeenUsed({ item, inventory}))
                   ? room.surroundingsWhenItemUsed
                   : room.surroundings
           );
       }
+
+
+      return room.surroundings;
   };
 
 
@@ -50,11 +55,7 @@ const RoomDescription =
               style={style}
           >
               <p>{ currentRoom.intro }</p>
-              <p>{ 
-                  currentRoom.surroundingsWhenItemPickedUp || currentRoom.surroundingsWhenItemUsed 
-                      ? chooseSurroundings({ room: currentRoom, inventory })
-                      : currentRoom.surroundings 
-              }
+              <p>{ chooseSurroundings({ room: currentRoom, inventory }) }
               </p>
           </div>
       );
