@@ -21,10 +21,6 @@ const styles = {
         , marginTop: '-8px'
         , position: 'absolute'
     }
-    , direction: {
-        minWidth: '280px'
-        , display: 'inline-block'
-    }
     , directionsContainer: {
         minHeight: '35vh'
         , display: 'grid'
@@ -99,10 +95,7 @@ const Directions =
                       ({ text, room }) => 
                           <span 
                               key={id()}
-                              style={{ 
-                                  ...styles.direction
-                                  , ...styles[text.toLowerCase()]
-                              }}
+                              style={styles[text.toLowerCase()]}
                           >
                               <Button 
                                   onClick={() => changeRoom(room)} 

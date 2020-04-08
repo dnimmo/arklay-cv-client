@@ -30,6 +30,7 @@ const items =
       , description: 'A crest, with a lion\'s head on the front.'
       , messageWhenUsed: 'You place the crest into the door'
       , messageWhenNotUsed: 'Cool lion, but what could this be for?'
+      , image: ''
   }
   , WINE_BOTTLE: {
       name : 'Wine Bottle'

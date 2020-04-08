@@ -21,11 +21,18 @@ const styles = {
         , borderTop: '2px solid #fafafa'
         , padding: '10vh'
         , backgroundColor: 'slategrey'
+        , display: 'grid'
+    }
+    , itemContainer: {
     }
     , closeButton: {
         position: 'absolute'
         , top: '2vh'
         , right: '2vh'
+    }
+    , messageContainer: {
+        minHeight: '50px'
+        , display: 'block'
     }
 };
 
@@ -52,20 +59,28 @@ const Inventory =
               <div style={styles.inventoryContainer}>
                   { inventory.itemsHeld.map(
                       x => 
-                          <Button 
-                              onClick={() => attemptToUseItem(x)} 
-                              text={items[x].name}
+                          <span style={styles.itemContainer}
                               key={id()}
-                          />  
+                          >
+                              <img 
+                                  src={items[x].image} 
+                                  //No need for an alt here, these images are not intended to supply any info
+                                  alt={''}
+                              />
+                              <Button 
+                                  onClick={() => attemptToUseItem(x)} 
+                                  text={items[x].name}
+                                  
+                              />
+                          </span>  
                   )}
+                  <p style={styles.messageContainer}>{message}</p>
                   <span style={styles.closeButton}>
                       <Button 
                           onClick={ hideInventory }
                           text="X"
                       />
                   </span>
-                  { message && <p>{message}</p>
-                  }
               </div>
           </div>
       );
