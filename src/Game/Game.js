@@ -69,21 +69,25 @@ const Game =
                         <Button 
                             onClick={() => examineRoom(currentRoom)}
                             text="Examine room"
+                            testKey="ButtonExamineRoom"
                         />
                         <span style={styles.inventoryButton(inventory.itemsHeld.length)}>
                             <Button 
                                 onClick={showInventory}
                                 text="Inventory"
+                                testKey="ButtonInventory"
                             />
                         </span>  
                         <div>{ soundEnabled 
                             ? <Button 
                                 onClick={disableSound}
                                 text="Turn sound off"
+                                testKey="ButtonSoundOff"
                             />
                             : <Button 
                                 onClick={enableSound}
                                 text="Turn sound on"
+                                testKey="ButtonSoundOn"
                             />
                         }</div>
                     </section>

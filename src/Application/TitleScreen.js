@@ -27,12 +27,14 @@ const TitleScreen =
                   <Button 
                       onClick={() => startGame({ soundEnabled: true })}
                       text="Start game (with sound)"
+                      testKey="ButtonStartWithSound"
                   />
               </div>
               <div>
                   <Button 
                       onClick={() => startGame({ soundEnabled: false })}
                       text="Start game (without sound)"
+                      testKey="ButtonStartWithoutSound"
                   />
               </div>
           </div>

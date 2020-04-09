@@ -70,7 +70,7 @@ const Inventory =
                               <Button 
                                   onClick={() => attemptToUseItem(x)} 
                                   text={items[x].name}
-                                  
+                                  testKey={`Button${x}`}
                               />
                           </span>  
                   )}
@@ -79,6 +79,7 @@ const Inventory =
                       <Button 
                           onClick={ hideInventory }
                           text="X"
+                          testKey="ButtonCloseInventory"
                       />
                   </span>
               </div>

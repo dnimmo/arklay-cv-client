@@ -23,9 +23,10 @@ const StyledButton =
 
 
 const Button = 
-  ({ onClick, text }) => 
+  ({ onClick, text, testKey }) => 
       <StyledButton
           onClick={onClick}
+          data-test={testKey}
       >
           {text}
       </StyledButton>;
@@ -34,6 +35,7 @@ const Button =
 Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
+    testKey: PropTypes.string.isRequired
 };
 
   

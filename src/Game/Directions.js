@@ -110,6 +110,7 @@ const Directions =
                                   <Button 
                                       onClick={() => changeRoom(room)} 
                                       text={text}
+                                      testKey={`Button${text}${room}`}
                                   />
                                   { !isUnlocked({
                                       room: rooms[room]
