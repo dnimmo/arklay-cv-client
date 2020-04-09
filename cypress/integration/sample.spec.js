@@ -7,10 +7,10 @@ const pressButton =
 
 
 describe('The game', () => {
-    // it('allows you to start with sound', () => {
-    //     cy.visit('http://localhost:3000');
-    //     pressButton('ButtonStartWithSound');
-    // });
+    it('allows you to start with sound', () => {
+        cy.visit('http://localhost:3000');
+        pressButton('ButtonStartWithSound');
+    });
 
     it('allows you to start without sound', () => {
         cy.visit('http://localhost:3000');
@@ -79,7 +79,6 @@ describe('The game', () => {
             pressButton('ButtonEastUTILITY_ROOM');
             pressButton('ButtonUTILITY_KEY');
             cy.contains(utilityKey.messageWhenUsed);
-
         });
     });
 
