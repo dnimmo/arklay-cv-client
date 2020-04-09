@@ -3,12 +3,12 @@ import { ApplicationContext } from './ApplicationContext';
 import Button from '../components/Button';
 const styles = {
     container: {
-        minHeight: '50vh'
-        , padding: '10vw'
-        , lineHeight: '26px'
-    }
-    , introText: {
-        padding: '10vw'
+        minHeight: '50vh',
+        padding: '10vw',
+        lineHeight: '26px',
+    },
+    introText: {
+        padding: '10vw',
     }
 };
 

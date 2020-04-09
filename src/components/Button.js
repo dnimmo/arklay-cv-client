@@ -32,8 +32,8 @@ const Button =
 
 
 Button.propTypes = {
-    onClick: PropTypes.func.isRequired
-    , text: PropTypes.string.isRequired
+    onClick: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
 };
 
   

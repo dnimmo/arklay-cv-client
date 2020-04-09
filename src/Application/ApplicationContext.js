@@ -10,22 +10,22 @@ const ApplicationContext =
 
 export
 const states = { 
-    DISPLAYING_TITLE_SCREEN: 'DISPLAYING_TITLE_SCREEN'
-    , DISPLAYING_GAME: 'DISPLAYING_GAME'
+    DISPLAYING_TITLE_SCREEN: 'DISPLAYING_TITLE_SCREEN',
+    DISPLAYING_GAME: 'DISPLAYING_GAME',
 };
 
 
-const initialState =
-  { state: states.DISPLAYING_TITLE_SCREEN
-      , soundEnabled: false
-  };
+const initialState = { 
+    state: states.DISPLAYING_TITLE_SCREEN,
+    soundEnabled: false,
+};
 
 
-const actions = 
-  { START_GAME: 'START_GAME'
-      , DISABLE_SOUND: 'DISABLE_SOUND'
-      , ENABLE_SOUND: 'ENABLE_SOUND'
-  };
+const actions = { 
+    START_GAME: 'START_GAME',
+    DISABLE_SOUND: 'DISABLE_SOUND',
+    ENABLE_SOUND: 'ENABLE_SOUND',
+};
 
 
 const update = 
@@ -37,8 +37,8 @@ const update =
           }
 
           return {
-              state: states.DISPLAYING_GAME
-              , soundEnabled: action.payload
+              state: states.DISPLAYING_GAME,
+              soundEnabled: action.payload,
           };
 
 
@@ -46,8 +46,8 @@ const update =
           stopBgMusic();
 
           return {
-              ...state
-              , soundEnabled: false
+              ...state,
+              soundEnabled: false,
           };
 
       
@@ -55,8 +55,8 @@ const update =
           playBgMusic();
 
           return {
-              ...state
-              , soundEnabled: true
+              ...state,
+              soundEnabled: true,
           };
 
 
@@ -79,7 +79,7 @@ const ApplicationProvider =
           ({ soundEnabled }) => {
               dispatch({
                   type: actions.START_GAME,
-                  payload: soundEnabled
+                  payload: soundEnabled,
               });
           },
           // The second argument here is an array of things that the first argument relies on
@@ -91,7 +91,7 @@ const ApplicationProvider =
       const enableSound = useCallback(
           () => {
               dispatch({
-                  type: actions.ENABLE_SOUND
+                  type: actions.ENABLE_SOUND,
               });
           },
           [dispatch]
@@ -101,7 +101,7 @@ const ApplicationProvider =
       const disableSound = useCallback(
           () => {
               dispatch({
-                  type: actions.DISABLE_SOUND
+                  type: actions.DISABLE_SOUND,
               });
           },
           [dispatch]
@@ -109,10 +109,10 @@ const ApplicationProvider =
 
 
       const value = {  
-          applicationState
-          , startGame
-          , enableSound
-          , disableSound
+          applicationState,
+          startGame,
+          enableSound,
+          disableSound,
       };
 
 

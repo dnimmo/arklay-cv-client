@@ -8,14 +8,15 @@ import RoomDescription from './RoomDescription';
 
 
 const styles = 
-  { inventoryButton: 
-      numberOfItems => 
-          ({ marginLeft: '20px'
-              , opacity: numberOfItems > 0 
-                  ? '1'
-                  : '0.5'
-          })
-  , message: 
+  { 
+      inventoryButton: 
+        numberOfItems => 
+            ({ marginLeft: '20px'
+                , opacity: numberOfItems > 0 
+                    ? '1'
+                    : '0.5'
+            }),
+      message: 
           { minHeight: '20px'
               , padding: '0 10vw'
           }
@@ -25,18 +26,18 @@ const styles =
 const Game = 
   () => { 
       const { 
-          gameState
-          , showInventory
-          , examineRoom
+          gameState,
+          showInventory,
+          examineRoom,
       } = 
         React.useContext(GameContext);
 
 
       const { 
-          state
-          , message
-          , inventory
-          , currentRoom
+          state,
+          message,
+          inventory,
+          currentRoom,
       } = 
         gameState;
 

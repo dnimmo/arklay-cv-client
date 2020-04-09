@@ -5,11 +5,11 @@ import { itemHasBeenPickedUp, itemHasBeenUsed, itemCanBeUsed } from './items';
 
 
 const style = {
-    minHeight: '40vh'
-    , padding: '5vh 10vw'
-    , maxWidth: '1000px'
-    , marginLeft: 'auto'
-    , marginRight: 'auto'
+    minHeight: '40vh',
+    padding: '5vh 10vw',
+    maxWidth: '1000px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 };
 
 
@@ -52,8 +52,8 @@ const RoomDescription =
 
 
       const {
-          currentRoom
-          , inventory
+          currentRoom,
+          inventory,
       } = 
         gameState;
 

@@ -13,29 +13,29 @@ const GameContext =
 
 export
 const states = {
-    DISPLAYING_DIRECTIONS: 'DISPLAYING_DIRECTIONS'
-    , DISPLAYING_INVENTORY: 'DISPLAYING_INVENTORY'
+    DISPLAYING_DIRECTIONS: 'DISPLAYING_DIRECTIONS',
+    DISPLAYING_INVENTORY: 'DISPLAYING_INVENTORY',
 };
 
 
 const initialState = {
-    state: states.DISPLAYING_DIRECTIONS
-    , currentRoom: rooms.START
-    , inventory: {
-        itemsHeld: []
-        , itemsUsed: []
-    }
-    , message: null  // This is used to give temporary contextual info to the player
+    state: states.DISPLAYING_DIRECTIONS,
+    currentRoom: rooms.START,
+    inventory: {
+        itemsHeld: [],
+        itemsUsed: [],
+    },
+    message: null,  // This is used to give temporary contextual info to the player
 };
 
 
 const actions = {
-    EXAMINE_ITEM: 'EXAMINE_ITEM'
-    , EXAMINE_ROOM: 'EXAMINE_ROOM'
-    , CHANGE_ROOM: 'CHANGE_ROOM'
-    , SHOW_DIRECTIONS: 'SHOW_DIRECTIONS'
-    , SHOW_INVENTORY: 'SHOW_INVENTORY'
-    , USE_ITEM: 'USE_ITEM'
+    EXAMINE_ITEM: 'EXAMINE_ITEM',
+    EXAMINE_ROOM: 'EXAMINE_ROOM',
+    CHANGE_ROOM: 'CHANGE_ROOM',
+    SHOW_DIRECTIONS: 'SHOW_DIRECTIONS',
+    SHOW_INVENTORY: 'SHOW_INVENTORY',
+    USE_ITEM: 'USE_ITEM',
 };
 
 
@@ -44,9 +44,9 @@ const update =
       switch (action.type) {
       case actions.HIDE_INVENTORY:
           return {
-              ...state
-              , state: states.DISPLAYING_DIRECTIONS
-              , message: null
+              ...state,
+              state: states.DISPLAYING_DIRECTIONS,
+              message: null,
           };
 
 
@@ -54,13 +54,13 @@ const update =
           return (
               state.inventory.itemsHeld.length > 0
                   ? {
-                      ...state
-                      , state: states.DISPLAYING_INVENTORY
-                      , message: null
+                      ...state,
+                      state: states.DISPLAYING_INVENTORY,
+                      message: null,
                   }
                   : {
-                      ...state
-                      , message: 'Your inventory is empty!'
+                      ...state,
+                      message: 'Your inventory is empty!',
                   }
           );
 
@@ -68,29 +68,29 @@ const update =
       case actions.CHANGE_ROOM:
           return (
               isUnlocked({ 
-                  room: rooms[action.payload.roomKey]
-                  , itemsUsed: state.inventory.itemsUsed
+                  room: rooms[action.payload.roomKey],
+                  itemsUsed: state.inventory.itemsUsed
               })
                   ? {
-                      ...state
-                      , currentRoom: rooms[action.payload.roomKey]
-                      , message: null
+                      ...state,
+                      currentRoom: rooms[action.payload.roomKey],
+                      message: null,
                   }
                   : playSoundEffect({ 
                       filename: 'failure',  
-                      soundEnabled: action.payload.soundEnabled 
+                      soundEnabled: action.payload.soundEnabled ,
                   }) || 
                     state.inventory.itemsHeld.length > 0 
                       ? { 
-                          ...state
-                          , state: states.DISPLAYING_INVENTORY
-                          , message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
-                            || defaultUnsuccessfulEntryAttemptMessage
+                          ...state,
+                          state: states.DISPLAYING_INVENTORY,
+                          message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
+                            || defaultUnsuccessfulEntryAttemptMessage,
                       }
                       : { 
-                          ...state
-                          , message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
-                            || defaultUnsuccessfulEntryAttemptMessage
+                          ...state,
+                          message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
+                            || defaultUnsuccessfulEntryAttemptMessage,
                       }
           );
 
@@ -100,23 +100,23 @@ const update =
           return (
               !state.currentRoom.item 
                 || itemHasBeenPickedUp({ 
-                    item: state.currentRoom.item
-                    , inventory: state.inventory
+                    item: state.currentRoom.item,
+                    inventory: state.inventory,
                 }) 
                   ? playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled }) 
                         || {
-                            ...state
-                            , message: 
-                              state.currentRoom.descriptionWhenExamined
+                            ...state,
+                            message: 
+                              state.currentRoom.descriptionWhenExamined,
                         }
                   : playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled }) 
-                        || { ...state
-                            , inventory: 
-                              { ...state.inventory
-                                  , itemsHeld: state.inventory.itemsHeld.concat(state.currentRoom.item)
-                              }
-                            , message: 
-                            `${items[state.currentRoom.item].name} has been added to your inventory`
+                        || { ...state,
+                            inventory: 
+                              { ...state.inventory,
+                                  itemsHeld: state.inventory.itemsHeld.concat(state.currentRoom.item),
+                              },
+                            message: 
+                              `${items[state.currentRoom.item].name} has been added to your inventory`,
                         }
             
           );
@@ -125,39 +125,40 @@ const update =
       case actions.USE_ITEM:
           return (
               itemCanBeUsed({
-                  availableDirections: state.currentRoom.availableDirections
-                  , item: action.payload.itemKey
+                  availableDirections: state.currentRoom.availableDirections,
+                  item: action.payload.itemKey,
               })
                   ? playSoundEffect({
                       filename: items[action.payload.itemKey].soundWhenUsed,
-                      soundEnabled: action.payload.soundEnabled 
+                      soundEnabled: action.payload.soundEnabled,
                   }) 
                     || {
-                        ...state
-                        , state: states.DISPLAYING_DIRECTIONS
-                        , message: items[action.payload.itemKey].messageWhenUsed
-                        , inventory: {
+                        ...state,
+                        state: states.DISPLAYING_DIRECTIONS,
+                        message: items[action.payload.itemKey].messageWhenUsed,
+                        inventory: {
                             itemsHeld: 
                               state
                                   .inventory
                                   .itemsHeld
                                   .filter(x => 
                                       x !== action.payload.itemKey
-                                  )
-                            , itemsUsed: 
+                                  ),
+
+                            itemsUsed: 
                               state
                                   .inventory
                                   .itemsUsed
                                   .concat(action.payload.itemKey)
-                        }
+                        },
                     }
                   : playSoundEffect({
                       filename: 'failure', 
-                      soundEnabled: action.payload.soundEnabled 
+                      soundEnabled: action.payload.soundEnabled,
                   }) 
                     || {
-                        ...state
-                        , message: items[action.payload.itemKey].messageWhenNotUsed
+                        ...state,
+                        message: items[action.payload.itemKey].messageWhenNotUsed,
                     }
           );
 
@@ -175,8 +176,8 @@ const GameProvider =
 
 
       const [
-          gameState
-          , dispatch
+          gameState,
+          dispatch,
       ] = 
         useReducer(update, initialState);
 
@@ -185,7 +186,7 @@ const GameProvider =
         useCallback(
             () => {
                 dispatch({
-                    type: actions.HIDE_INVENTORY
+                    type: actions.HIDE_INVENTORY,
                 });
             },
             [dispatch]
@@ -196,7 +197,7 @@ const GameProvider =
         useCallback(
             () => {
                 dispatch({
-                    type: actions.SHOW_INVENTORY
+                    type: actions.SHOW_INVENTORY,
                 });
             },
             [dispatch]
@@ -208,7 +209,7 @@ const GameProvider =
             (roomKey) => {
                 dispatch({
                     type: actions.CHANGE_ROOM,
-                    payload: { roomKey, soundEnabled }
+                    payload: { roomKey, soundEnabled },
                 });
             },
             [dispatch, soundEnabled]
@@ -220,7 +221,7 @@ const GameProvider =
             (itemKey) => {
                 dispatch({
                     type: actions.USE_ITEM,
-                    payload: { itemKey, soundEnabled }
+                    payload: { itemKey, soundEnabled },
                 });
             },
             [dispatch, soundEnabled]
@@ -231,21 +232,21 @@ const GameProvider =
         useCallback(
             () => {
                 dispatch({
-                    type: actions.EXAMINE_ROOM
-                    , payload: { soundEnabled }
+                    type: actions.EXAMINE_ROOM,
+                    payload: { soundEnabled },
                 });
             },
             [dispatch, soundEnabled]
         );
 
 
-      const value = { 
-          gameState
-          , hideInventory
-          , showInventory
-          , changeRoom
-          , attemptToUseItem
-          , examineRoom
+      const value = {
+          gameState,
+          hideInventory,
+          showInventory,
+          changeRoom,
+          attemptToUseItem,
+          examineRoom,
       };
 
 
@@ -260,7 +261,7 @@ const GameProvider =
 
 
 GameProvider.propTypes = {
-    children: PropTypes.object
+    children: PropTypes.object,
 };
 
 

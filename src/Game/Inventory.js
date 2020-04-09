@@ -7,49 +7,49 @@ import { id } from '../utils';
 
 const styles = {
     inventoryOuter: {
-        height: '65vh'
-        , position: 'fixed'
-        , top: '0'
-        , width: '100vw'
-        , backgroundColor: 'rgba(0,0,0,0.3)'
-    }
-    , inventoryContainer: {
-        minHeight: '35vh'
-        , position: 'fixed'
-        , bottom: '0'
-        , width: '100vw'
-        , borderTop: '2px solid #fafafa'
-        , padding: '10vh'
-        , backgroundColor: 'slategrey'
-        , display: 'grid'
-    }
-    , itemContainer: {
-    }
-    , closeButton: {
-        position: 'absolute'
-        , top: '2vh'
-        , right: '2vh'
-    }
-    , messageContainer: {
-        minHeight: '50px'
-        , display: 'block'
-    }
+        height: '65vh',
+        position: 'fixed',
+        top: '0',
+        width: '100vw',
+        backgroundColor: 'rgba(0,0,0,0.3)',
+    },
+    inventoryContainer: {
+        minHeight: '35vh',
+        position: 'fixed',
+        bottom: '0',
+        width: '100vw',
+        borderTop: '2px solid #fafafa',
+        padding: '10vh',
+        backgroundColor: 'slategrey',
+        display: 'grid',
+    },
+    itemContainer: {
+    },
+    closeButton: {
+        position: 'absolute',
+        top: '2vh',
+        right: '2vh',
+    },
+    messageContainer: {
+        minHeight: '50px',
+        display: 'block',
+    },
 };
 
 
 const Inventory =
   () => {
       const { 
-          gameState
-          , attemptToUseItem
-          , hideInventory
+          gameState,
+          attemptToUseItem,
+          hideInventory,
       } 
         = React.useContext(GameContext);
 
 
       const { 
-          inventory
-          , message 
+          inventory,
+          message,
       }
         = gameState;
 

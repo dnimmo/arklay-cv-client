@@ -8,62 +8,62 @@ import rooms, { isUnlocked } from './rooms';
 
 const styles = {
     icon : { 
-        height: '16px' 
-        , width: 'auto'
-        , minWidth: '16px'
-    }
-    , iconContainer: {
-        backgroundColor: '#fafafa'
-        , border: '1px solid #fafafa'
-        , padding: '2px 4px'
-        , borderRadius: '50px'
-        , marginLeft: '-15px'
-        , marginTop: '-8px'
-        , position: 'absolute'
-    }
-    , directionsContainer: {
-        maxWidth: '600px'
-        , marginRight: 'auto'
-        , marginLeft: 'auto'
-    }
-    , directionsGrid: {
-        minHeight: '35vh'
-        , display: 'grid'
-        , gridTemplateColumns: '33.3% 33.3% 33.3%'
-        , gridTemplateRows: '20% 20% 20% 20% 20%'
-        , justifyItems: 'center'
-        , justifyContent: 'space-evenly'
-    }
-    , upstairs: {
-        gridColumn: '2'
-    }
-    , north: {
-        gridColumn: '2'
-        , gridRow: '2'
-    }
-    , east: {
-        gridColumn: '3'
-        , gridRow: '3'
-    }
-    , west: {
-        gridColumn: '1'
-        , gridRow: '3'
-    }
-    , south: {
-        gridColumn: '2'
-        , gridRow: '4'
-    }
-    , downstairs: {
-        gridColumn: '2'
-        , gridRow: '5'
-    }
-    , enter: {
-        gridColumn: '2'
-        , gridRow: '3'
-    }
-    , end: {
-        gridColumn: '2'
-        , gridRow: '3'
+        height: '16px',
+        width: 'auto',
+        minWidth: '16px',
+    },
+    iconContainer: {
+        backgroundColor: '#fafafa',
+        border: '1px solid #fafafa',
+        padding: '2px 4px',
+        borderRadius: '50px',
+        marginLeft: '-15px',
+        marginTop: '-8px',
+        position: 'absolute',
+    },
+    directionsContainer: {
+        maxWidth: '600px',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+    },
+    directionsGrid: {
+        minHeight: '35vh',
+        display: 'grid',
+        gridTemplateColumns: '33.3% 33.3% 33.3%',
+        gridTemplateRows: '20% 20% 20% 20% 20%',
+        justifyItems: 'center',
+        justifyContent: 'space-evenly',
+    },
+    upstairs: {
+        gridColumn: '2',
+    },
+    north: {
+        gridColumn: '2',
+        gridRow: '2',
+    },
+    east: {
+        gridColumn: '3',
+        gridRow: '3',
+    },
+    west: {
+        gridColumn: '1',
+        gridRow: '3',
+    },
+    south: {
+        gridColumn: '2',
+        gridRow: '4',
+    },
+    downstairs: {
+        gridColumn: '2',
+        gridRow: '5',
+    },
+    enter: {
+        gridColumn: '2',
+        gridRow: '3',
+    },
+    end: {
+        gridColumn: '2',
+        gridRow: '3',
     }
 };
 
@@ -76,22 +76,22 @@ const Icon =
 
 
 Icon.propTypes = {
-    isUnlocked: PropTypes.bool.isRequired
+    isUnlocked: PropTypes.bool.isRequired,
 };
 
 
 const Directions = 
   () => {
       const { 
-          gameState
-          , changeRoom
+          gameState,
+          changeRoom,
       } = 
         React.useContext(GameContext);
 
 
       const { 
-          currentRoom
-          , inventory 
+          currentRoom,
+          inventory,
       } = 
         gameState;
   
