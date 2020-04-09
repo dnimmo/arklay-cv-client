@@ -11,14 +11,21 @@ const styles =
   { 
       inventoryButton: 
         numberOfItems => 
-            ({ marginLeft: '20px'
-                , opacity: numberOfItems > 0 
+            ({ 
+                marginLeft: '20px',
+                opacity: numberOfItems > 0 
                     ? '1'
                     : '0.5'
             }),
       message: 
-          { minHeight: '20px'
-              , padding: '0 10vw'
+          { 
+              minHeight: '20px',
+              padding: '0 10vw'
+          },
+      lowerHalfContainer: 
+          { 
+              borderTop: '2px solid #fafafa',
+              paddingTop: '20px'
           }
   };
 
@@ -47,7 +54,7 @@ const Game =
             switch (state) {
             case states.DISPLAYING_DIRECTIONS:
                 return (
-                    <section>
+                    <section style={styles.lowerHalfContainer}>
                         <Directions />
                         <p style={styles.message}>{message}</p>
                         <Button 
@@ -66,7 +73,7 @@ const Game =
 
             case states.DISPLAYING_INVENTORY:
                 return (
-                    <section>
+                    <section style={styles.lowerHalfContainer}>
                         <Directions />
                         <p style={styles.message}>{message}</p>
                         <Inventory />
