@@ -99,22 +99,17 @@ const update =
       case actions.EXAMINE_ROOM: 
           return (
               !state.currentRoom.item 
-                  ? (playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled })) 
-                    || {
-                        ...state
-                        , message: state.currentRoom.descriptionWhenExamined
-                    }
-                  : itemHasBeenPickedUp({ 
-                      item: state.currentRoom.item
-                      , inventory: state.inventory
-                  }) 
-                      ? playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled }) 
+                || itemHasBeenPickedUp({ 
+                    item: state.currentRoom.item
+                    , inventory: state.inventory
+                }) 
+                  ? playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled }) 
                         || {
                             ...state
                             , message: 
                               state.currentRoom.descriptionWhenExamined
                         }
-                      : playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled }) 
+                  : playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled }) 
                         || { ...state
                             , inventory: 
                               { ...state.inventory
