@@ -1,4 +1,5 @@
 import React from 'react';
+import { ApplicationContext } from '../Application/ApplicationContext';
 import { GameContext, states } from './GameContext';
 import Directions from './Directions';
 import Inventory from './Inventory';
@@ -32,6 +33,14 @@ const styles =
 
 const Game = 
   () => { 
+      const {
+          applicationState: { soundEnabled },
+          enableSound,
+          disableSound,
+      } =
+        React.useContext(ApplicationContext);
+        
+
       const { 
           gameState,
           showInventory,
@@ -67,6 +76,16 @@ const Game =
                                 text="Inventory"
                             />
                         </span>  
+                        <div>{ soundEnabled 
+                            ? <Button 
+                                onClick={disableSound}
+                                text="Turn sound off"
+                            />
+                            : <Button 
+                                onClick={enableSound}
+                                text="Turn sound on"
+                            />
+                        }</div>
                     </section>
                 );
 

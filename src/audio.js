@@ -10,7 +10,7 @@ const playBgMusic =
 
 export 
 const stopBgMusic =
-    () => bgMusic.stop();
+    () => bgMusic.pause();
 
 
 const successEffect = new Audio();
