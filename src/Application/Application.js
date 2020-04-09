@@ -8,11 +8,11 @@ import Error from '../Error';
 
 const Application = 
   () => {
-      const { applicationState } = 
+      const { applicationState: { state } } = 
         React.useContext(ApplicationContext);
 
 
-      switch (applicationState.state) {
+      switch (state) {
       case states.DISPLAYING_TITLE_SCREEN:
           return <TitleScreen />;
 
