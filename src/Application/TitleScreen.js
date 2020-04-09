@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { ApplicationContext } from './ApplicationContext';
 import Button from '../components/Button';
-import playMusic from '../audio';
-
 const styles = {
     container: {
         minHeight: '50vh'
@@ -27,17 +25,13 @@ const TitleScreen =
               <p style={styles.introText}>Your head hurts. You&apos;re not sure where you are, and you definitely don&apos;t know how you got here. There&apos;s rain thrashing the ground all around you. You figure you might as well try and understand what the Hell is going on...</p>
               <div>
                   <Button 
-                      onClick={() => {
-                          playMusic('The_Dark_Place.mp3');
-                          startGame();
-                      }
-                      }
-                      text="Start game"
+                      onClick={() => startGame({ soundEnabled: true })}
+                      text="Start game (with sound)"
                   />
               </div>
               <div>
                   <Button 
-                      onClick={startGame}
+                      onClick={() => startGame({ soundEnabled: false })}
                       text="Start game (without sound)"
                   />
               </div>

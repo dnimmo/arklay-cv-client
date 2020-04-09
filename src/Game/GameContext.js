@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import rooms, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms';
 import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
 import playSoundEffect from '../audio';
+import { ApplicationContext } from '../Application/ApplicationContext';
+
 
 export
 const GameContext =
@@ -66,24 +68,28 @@ const update =
       case actions.CHANGE_ROOM:
           return (
               isUnlocked({ 
-                  room: rooms[action.payload]
+                  room: rooms[action.payload.roomKey]
                   , itemsUsed: state.inventory.itemsUsed
               })
                   ? {
                       ...state
-                      , currentRoom: rooms[action.payload]
+                      , currentRoom: rooms[action.payload.roomKey]
                       , message: null
                   }
-                  : state.inventory.itemsHeld.length > 0 
+                  : playSoundEffect({ 
+                      filename: 'failure',  
+                      soundEnabled: action.payload.soundEnabled 
+                  }) || 
+                    state.inventory.itemsHeld.length > 0 
                       ? { 
                           ...state
                           , state: states.DISPLAYING_INVENTORY
-                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt 
+                          , message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage
                       }
                       : { 
                           ...state
-                          , message: rooms[action.payload].messageOnUnsuccessfulEntryAttempt 
+                          , message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage
                       }
           );
@@ -93,7 +99,7 @@ const update =
       case actions.EXAMINE_ROOM: 
           return (
               !state.currentRoom.item 
-                  ? playSoundEffect('failure.wav') 
+                  ? (playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled })) 
                     || {
                         ...state
                         , message: state.currentRoom.descriptionWhenExamined
@@ -102,13 +108,13 @@ const update =
                       item: state.currentRoom.item
                       , inventory: state.inventory
                   }) 
-                      ? playSoundEffect('failure.wav') 
+                      ? playSoundEffect({ filename: 'failure', soundEnabled: action.payload.soundEnabled }) 
                         || {
                             ...state
                             , message: 
                               state.currentRoom.descriptionWhenExamined
                         }
-                      : playSoundEffect('success_chime.wav') 
+                      : playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled }) 
                         || { ...state
                             , inventory: 
                               { ...state.inventory
@@ -125,32 +131,38 @@ const update =
           return (
               itemCanBeUsed({
                   availableDirections: state.currentRoom.availableDirections
-                  , item: action.payload
+                  , item: action.payload.itemKey
               })
-                  ? playSoundEffect(items[action.payload].soundWhenUsed) 
+                  ? playSoundEffect({
+                      filename: items[action.payload.itemKey].soundWhenUsed,
+                      soundEnabled: action.payload.soundEnabled 
+                  }) 
                     || {
                         ...state
                         , state: states.DISPLAYING_DIRECTIONS
-                        , message: items[action.payload].messageWhenUsed
+                        , message: items[action.payload.itemKey].messageWhenUsed
                         , inventory: {
                             itemsHeld: 
                               state
                                   .inventory
                                   .itemsHeld
                                   .filter(x => 
-                                      x !== action.payload
+                                      x !== action.payload.itemKey
                                   )
                             , itemsUsed: 
                               state
                                   .inventory
                                   .itemsUsed
-                                  .concat(action.payload)
+                                  .concat(action.payload.itemKey)
                         }
                     }
-                  : playSoundEffect('failure.wav') 
+                  : playSoundEffect({
+                      filename: 'failure', 
+                      soundEnabled: action.payload.soundEnabled 
+                  }) 
                     || {
                         ...state
-                        , message: items[action.payload].messageWhenNotUsed
+                        , message: items[action.payload.itemKey].messageWhenNotUsed
                     }
           );
 
@@ -163,6 +175,10 @@ const update =
 
 const GameProvider = 
   ({ children }) => {
+      const { applicationState: { soundEnabled } } =
+        React.useContext(ApplicationContext);
+
+
       const [
           gameState
           , dispatch
@@ -197,10 +213,10 @@ const GameProvider =
             (roomKey) => {
                 dispatch({
                     type: actions.CHANGE_ROOM,
-                    payload: roomKey
+                    payload: { roomKey, soundEnabled }
                 });
             },
-            [dispatch]
+            [dispatch, soundEnabled]
         );
 
 
@@ -209,22 +225,22 @@ const GameProvider =
             (itemKey) => {
                 dispatch({
                     type: actions.USE_ITEM,
-                    payload: itemKey
+                    payload: { itemKey, soundEnabled }
                 });
             },
-            [dispatch]
+            [dispatch, soundEnabled]
         );
 
 
       const examineRoom =
         useCallback(
-            (roomKey) => {
+            () => {
                 dispatch({
-                    type: actions.EXAMINE_ROOM,
-                    payload: roomKey
+                    type: actions.EXAMINE_ROOM
+                    , payload: { soundEnabled }
                 });
             },
-            [dispatch]
+            [dispatch, soundEnabled]
         );
 
 

@@ -12,7 +12,7 @@ const Application =
         React.useContext(ApplicationContext);
 
 
-      switch (applicationState) {
+      switch (applicationState.state) {
       case states.DISPLAYING_TITLE_SCREEN:
           return <TitleScreen />;
 

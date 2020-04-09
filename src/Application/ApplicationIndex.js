@@ -4,7 +4,7 @@ import Application from './Application';
 
 
 const style =
-  { minHeight: '100vh'};
+  { minHeight: '80vh'};
 
 
 const ApplicationIndex = 
