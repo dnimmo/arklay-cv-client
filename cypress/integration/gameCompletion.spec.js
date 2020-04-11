@@ -217,4 +217,183 @@ describe('The game', () => {
         });
     });
 
+
+    describe('the key code:', () => {
+        const keyCode = items.KEY_CODE;
+
+
+        it('can be picked up', () => {
+            pressButton('ButtonDownstairsSTAIRWAY_THREE');
+            pressButton('ButtonSouthHALLWAY_FOUR');
+            pressButton('ButtonWestMUSIC_ROOM');
+            pressButton('ButtonNorthHALLWAY_FIVE');
+            pressButton('ButtonNorthGYM');
+            pressButton('ButtonExamineRoom');
+            cy.contains(`${keyCode.name} has been added`);
+        });
+
+
+        it('can be selected', () => {
+            pressButton('ButtonInventory');
+            pressButton('ButtonKEY_CODE');
+            cy.contains(keyCode.messageWhenNotUsed);
+        });
+
+
+        it('can be used', () => {
+            pressButton('ButtonCloseInventory');
+            pressButton('ButtonSouthHALLWAY_FIVE');
+            pressButton('ButtonSouthMUSIC_ROOM');
+            pressButton('ButtonEastHALLWAY_FOUR');
+            pressButton('ButtonNorthSTAIRWAY_THREE');
+            pressButton('ButtonUpstairsUPSTAIRS_STAIRWAY_THREE');
+            pressButton('ButtonEastUPSTAIRS_HALLWAY_TWO');
+            pressButton('ButtonSouthUPSTAIRS_STUDY');
+            pressButton('ButtonInventory');
+            pressButton('ButtonKEY_CODE');
+            cy.contains(keyCode.messageWhenUsed);
+        });
+    });
+
+
+    describe('the lion crest:', () => {
+        const lionCrest = items.LION_CREST;
+
+
+        it('can be picked up', () => {
+            pressButton('ButtonWestUPSTAIRS_SECRET_ROOM_THREE');
+            pressButton('ButtonExamineRoom');
+            cy.contains(`${lionCrest.name} has been added`);
+        });
+
+
+        it('can be selected', () => {
+            pressButton('ButtonInventory');
+            pressButton('ButtonLION_CREST');
+            cy.contains(lionCrest.messageWhenNotUsed);
+        });
+
+
+        it('can be used', () => {
+            pressButton('ButtonCloseInventory');
+            pressButton('ButtonEastUPSTAIRS_STUDY');
+            pressButton('ButtonNorthUPSTAIRS_HALLWAY_TWO');
+            pressButton('ButtonWestUPSTAIRS_STAIRWAY_THREE');
+            pressButton('ButtonNorthUPSTAIRS_MASTER_BEDROOM');
+            pressButton('ButtonLION_CREST');
+            cy.contains(lionCrest.messageWhenUsed);
+        });
+    });
+
+
+    describe('the sheet music:', () => {
+        const sheetMusic = items.SHEET_MUSIC;
+
+
+        it('can be picked up', () => {
+            pressButton('ButtonEastUPSTAIRS_HALLWAY_TWO');
+            pressButton('ButtonEastUPSTAIRS_ART_GALLERY');
+            pressButton('ButtonEastUPSTAIRS_HALLWAY_THREE');
+            pressButton('ButtonSouthUPSTAIRS_LIBRARY');
+            pressButton('ButtonExamineRoom');
+            cy.contains(`${sheetMusic.name} has been added`);
+        });
+
+
+        it('can be selected', () => {
+            pressButton('ButtonInventory');
+            pressButton('ButtonSHEET_MUSIC');
+            cy.contains(sheetMusic.messageWhenNotUsed);
+        });
+
+
+        it('can be used', () => {
+            pressButton('ButtonCloseInventory');
+            pressButton('ButtonNorthUPSTAIRS_HALLWAY_THREE');
+            pressButton('ButtonWestUPSTAIRS_ART_GALLERY');
+            pressButton('ButtonWestUPSTAIRS_HALLWAY_TWO');
+            pressButton('ButtonWestUPSTAIRS_STAIRWAY_THREE');
+            pressButton('ButtonDownstairsSTAIRWAY_THREE');
+            pressButton('ButtonSouthHALLWAY_FOUR');
+            pressButton('ButtonWestMUSIC_ROOM');
+            pressButton('ButtonSouthSECRET_ROOM_ONE');
+            pressButton('ButtonSHEET_MUSIC');
+            cy.contains(sheetMusic.messageWhenUsed);
+        });
+    });
+
+
+    describe('the eagle crest', () => {
+        const eagleCrest = items.EAGLE_CREST;
+
+
+        it('can be picked up', () => {
+            pressButton('ButtonSouthSECRET_ROOM_ONE');
+            pressButton('ButtonExamineRoom');
+            cy.contains(`${eagleCrest.name} has been added`);
+        });
+
+
+        it('can be selected', () => {
+            pressButton('ButtonInventory');
+            pressButton('ButtonEAGLE_CREST');
+            cy.contains(eagleCrest.messageWhenNotUsed);
+        });
+
+
+        it('can be used', () => {
+            pressButton('ButtonCloseInventory');
+            pressButton('ButtonNorthMUSIC_ROOM');
+            pressButton('ButtonEastHALLWAY_FOUR');
+            pressButton('ButtonNorthSTAIRWAY_THREE');
+            pressButton('ButtonUpstairsUPSTAIRS_STAIRWAY_THREE');
+            pressButton('ButtonNorthUPSTAIRS_MASTER_BEDROOM');
+            pressButton('ButtonEAGLE_CREST');
+            cy.contains(eagleCrest.messageWhenUsed);
+        });
+    });
+
+
+    describe('the wine bottle:', () => {
+        const wineBottle = items.WINE_BOTTLE;
+
+
+        it('can be picked up', () => {
+            pressButton('ButtonNorthUPSTAIRS_MASTER_BEDROOM');
+            pressButton('ButtonWestUPSTAIRS_MASTER_EN_SUITE');
+            pressButton('ButtonExamineRoom');
+            cy.contains(`${wineBottle.name} has been added`);
+        });
+
+
+        it('can be selected', () => {
+            pressButton('ButtonInventory');
+            pressButton('ButtonWINE_BOTTLE');
+            cy.contains(wineBottle.messageWhenNotUsed);
+        });
+
+
+        it('can be used', () => {
+            pressButton('ButtonCloseInventory');
+            pressButton('ButtonEastUPSTAIRS_MASTER_BEDROOM');
+            pressButton('ButtonSouthUPSTAIRS_STAIRWAY_THREE');
+            pressButton('ButtonDownstairsSTAIRWAY_THREE');
+            pressButton('ButtonSouthHALLWAY_FOUR');
+            pressButton('ButtonEastHALLWAY_TWO');
+            pressButton('ButtonEastUTILITY_ROOM');
+            pressButton('ButtonDownstairsBASEMENT_STAIRWAY');
+            pressButton('ButtonSouthBASEMENT_WINE_CELLAR');
+            pressButton('ButtonWestBASEMENT_LAB_ENTRANCE');
+            pressButton('ButtonWINE_BOTTLE');
+            cy.contains(wineBottle.messageWhenUsed);
+        });
+    });
+
+    describe('game over:', () => {
+        it('can be completed', () => {
+            pressButton('ButtonWestBASEMENT_LAB_ENTRANCE');
+            pressButton('ButtonEndEND');
+            cy.contains('Congratulations!');
+        });
+    });
 });
