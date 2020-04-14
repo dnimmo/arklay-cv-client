@@ -1,5 +1,4 @@
 import items from '../../src/Game/items';
-import { states } from '../../src/Application/ApplicationContext';
 
 
 const pressButton = 

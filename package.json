@@ -18,6 +18,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "cypress": "^4.3.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "jest": "^24.9.0",
     "typescript": "3.3.3"
   },
@@ -25,8 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest test",
+    "test-ui": "cypress run",
     "eject": "react-scripts eject",
-    "deploy": "npm test && npm run build && surge build arklay.surge.sh"
+    "deploy": "npm test && npm run test-ui && npm run build && surge build arklay.surge.sh"
   },
   "browserslist": [
     ">0.2%",
