@@ -1,3 +1,27 @@
+type ItemKey = 
+    'LION_CREST'
+    | 'WINE_BOTTLE'
+    | 'UTILITY_KEY'
+    | 'SHEET_MUSIC'
+    | 'MOOSE_HEAD'
+    | 'KEY_CODE'
+    | 'EAGLE_CREST'
+    | 'CROWBAR'
+    | 'STATUE_HEAD'
+    | 'HANDLE'
+    | 'SMALL_KEY'
+    | 'WOLF_CREST'
+
+
+type Item = {
+    name : string,
+    description: string,
+    messageWhenUsed : string,
+    messageWhenNotUsed : string,
+    soundWhenUsed: string,
+}
+
+
 export
 const itemCanBeUsed =
   ({ item, availableDirections }) => 
@@ -22,7 +46,7 @@ const itemHasBeenUsed =
       inventory
           .itemsUsed
           .includes(item);
-  
+
 
 const items = 
   { LION_CREST: { 
@@ -112,4 +136,9 @@ const items =
   };
 
 
-export default items; 
+const getItem = 
+  (itemKey : ItemKey) : Item => 
+    items[itemKey]
+
+
+export default getItem; 

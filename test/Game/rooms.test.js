@@ -1,7 +1,7 @@
 import { 
     isUnlocked
     , anItemCanBeUsed
-} from '../../src/Game/rooms';
+} from '../../src/Game/rooms.ts';
 
 
 describe('Game/rooms', () => {

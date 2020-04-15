@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import getRoom, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms.ts';
-import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
+import getItem, { itemCanBeUsed, itemHasBeenPickedUp } from './items.ts';
 import playSoundEffect from '../audio';
 import { ApplicationContext } from '../Application/ApplicationContext';
 
@@ -116,7 +116,7 @@ const update =
                                   itemsHeld: state.inventory.itemsHeld.concat(state.currentRoom.item),
                               },
                             message: 
-                              `${items[state.currentRoom.item].name} has been added to your inventory`,
+                              `${getItem(state.currentRoom.item).name} has been added to your inventory`,
                         }
             
           );
@@ -129,13 +129,13 @@ const update =
                   item: action.payload.itemKey,
               })
                   ? playSoundEffect({
-                      filename: items[action.payload.itemKey].soundWhenUsed,
+                      filename: getItem(action.payload.itemKey).soundWhenUsed,
                       soundEnabled: action.payload.soundEnabled,
                   }) 
                     || {
                         ...state,
                         state: states.DISPLAYING_DIRECTIONS,
-                        message: items[action.payload.itemKey].messageWhenUsed,
+                        message: getItem(action.payload.itemKey).messageWhenUsed,
                         inventory: {
                             itemsHeld: 
                               state
@@ -158,7 +158,7 @@ const update =
                   }) 
                     || {
                         ...state,
-                        message: items[action.payload.itemKey].messageWhenNotUsed,
+                        message: getItem(action.payload.itemKey).messageWhenNotUsed,
                     }
           );
 

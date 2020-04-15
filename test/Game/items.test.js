@@ -2,7 +2,7 @@ import {
     itemCanBeUsed
     , itemHasBeenPickedUp
     , itemHasBeenUsed 
-} from '../../src/Game/items';
+} from '../../src/Game/items.ts';
 
 
 describe('Game/items', () => {
