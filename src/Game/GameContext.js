@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import rooms, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms';
+import getRoom, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms.ts';
 import items, { itemCanBeUsed, itemHasBeenPickedUp } from './items';
 import playSoundEffect from '../audio';
 import { ApplicationContext } from '../Application/ApplicationContext';
@@ -20,7 +20,7 @@ const states = {
 
 const initialState = {
     state: states.DISPLAYING_DIRECTIONS,
-    currentRoom: rooms.START,
+    currentRoom: getRoom('START'),
     inventory: {
         itemsHeld: [],
         itemsUsed: [],
@@ -68,12 +68,12 @@ const update =
       case actions.CHANGE_ROOM:
           return (
               isUnlocked({ 
-                  room: rooms[action.payload.roomKey],
+                  room: getRoom(action.payload.roomKey),
                   itemsUsed: state.inventory.itemsUsed
               })
                   ? {
                       ...state,
-                      currentRoom: rooms[action.payload.roomKey],
+                      currentRoom: getRoom(action.payload.roomKey),
                       message: null,
                   }
                   : playSoundEffect({ 
@@ -84,12 +84,12 @@ const update =
                       ? { 
                           ...state,
                           state: states.DISPLAYING_INVENTORY,
-                          message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
+                          message: getRoom(action.payload.roomKey).messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage,
                       }
                       : { 
                           ...state,
-                          message: rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
+                          message: getRoom(action.payload.roomKey).messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage,
                       }
           );

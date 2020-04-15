@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { GameContext } from './GameContext';
 import Button from '../components/Button';
 import { id } from '../utils';
-import rooms, { isUnlocked } from './rooms';
+import getRoom, { isUnlocked } from './rooms.ts';
 
 
 const styles = {
@@ -113,8 +113,8 @@ const Directions =
                                       testKey={`Button${text}${room}`}
                                   />
                                   { !isUnlocked({
-                                      room: rooms[room]
-                                      , itemsUsed: inventory.itemsUsed
+                                      room: getRoom(room), 
+                                      itemsUsed: inventory.itemsUsed
                                   }) && <span style={styles.iconContainer}>
                                       <img src="./images/locked.svg" alt="a locked padlock" style={styles.icon} />
                                   </span> }

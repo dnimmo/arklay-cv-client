@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameContext } from './GameContext';
-import { anItemCanBeUsed } from './rooms';
+import { anItemCanBeUsed } from './rooms.ts';
 import { itemHasBeenPickedUp, itemHasBeenUsed, itemCanBeUsed } from './items';
 
 
