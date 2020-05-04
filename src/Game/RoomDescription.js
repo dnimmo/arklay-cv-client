@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameContext } from './GameContext';
 import { anItemCanBeUsed } from './rooms.ts';
-import { itemHasBeenPickedUp, itemHasBeenUsed, itemCanBeUsed } from './items.ts';
+import { itemHasBeenPickedUp, itemHasBeenUsed, itemCanBeUsed } from './items';
 
 
 const style = {
@@ -50,7 +50,7 @@ const RoomDescription =
       } = 
         React.useContext(GameContext);
 
-
+      console.log(gameState);
       const {
           currentRoom,
           inventory,

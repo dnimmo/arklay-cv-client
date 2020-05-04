@@ -1,7 +1,6 @@
 import React from 'react';
 import { GameContext } from './GameContext';
 import Button from '../components/Button';
-import getItem from './items.ts';
 import { id } from '../utils';
 
 
@@ -63,13 +62,13 @@ const Inventory =
                               key={id()}
                           >
                               <img 
-                                  src={getItem(x).image} 
+                                  src={x.image} 
                                   //No need for an alt here, these images are not intended to supply any info
                                   alt={''}
                               />
                               <Button 
-                                  onClick={() => attemptToUseItem(x)} 
-                                  text={getItem(x).name}
+                                  onClick={() => attemptToUseItem(x.key)} 
+                                  text={x.name}
                                   testKey={`Button${x}`}
                               />
                           </span>  

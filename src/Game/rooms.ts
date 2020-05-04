@@ -1180,7 +1180,9 @@ const rooms = {
 
 const getRoom = 
     (roomKey: RoomKey) : Room => 
-        rooms[roomKey];
+        { console.log(rooms[roomKey])
+            return rooms[roomKey]; 
+        }
 
 
 export default getRoom;

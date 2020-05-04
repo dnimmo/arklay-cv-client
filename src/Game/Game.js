@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ApplicationContext } from '../Application/ApplicationContext';
 import { GameContext, states } from './GameContext';
 import Directions from './Directions';
@@ -45,8 +45,16 @@ const Game =
           gameState,
           showInventory,
           examineRoom,
+          getItems,
       } = 
         React.useContext(GameContext);
+
+
+      useEffect(() => {
+          if (!gameState.items) {
+              getItems();
+          }
+      }, [getItems, gameState.items]);
 
 
       const { 
@@ -61,6 +69,12 @@ const Game =
       const chooseState = 
         (state) => {
             switch (state) {
+            case states.LOADING: 
+                return (
+                    <p>...</p>
+                );
+
+
             case states.DISPLAYING_DIRECTIONS:
                 return (
                     <section style={styles.lowerHalfContainer}>
