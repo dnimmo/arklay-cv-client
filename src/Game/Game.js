@@ -45,16 +45,21 @@ const Game =
           gameState,
           showInventory,
           examineRoom,
+          getRooms,
           getItems,
       } = 
         React.useContext(GameContext);
 
 
       useEffect(() => {
-          if (!gameState.items) {
+          if (gameState.state === states.LOADING_ROOMS) {
+              getRooms();
+          }
+
+          if (gameState.state === states.LOADING_ITEMS) {
               getItems();
           }
-      }, [getItems, gameState.items]);
+      }, [getRooms, getItems, gameState.rooms, gameState.items, gameState.state]);
 
 
       const { 
@@ -69,7 +74,8 @@ const Game =
       const chooseState = 
         (state) => {
             switch (state) {
-            case states.LOADING: 
+            case states.LOADING_ITEMS:
+            case states.LOADING_ROOMS: 
                 return (
                     <p>...</p>
                 );
@@ -77,44 +83,50 @@ const Game =
 
             case states.DISPLAYING_DIRECTIONS:
                 return (
-                    <section style={styles.lowerHalfContainer}>
-                        <Directions />
-                        <p style={styles.message}>{message}</p>
-                        <Button 
-                            onClick={() => examineRoom(currentRoom)}
-                            text="Examine room"
-                            testKey="ButtonExamineRoom"
-                        />
-                        <span style={styles.inventoryButton(inventory.itemsHeld.length)}>
+                    <div>
+                        <RoomDescription />
+                        <section style={styles.lowerHalfContainer}>
+                            <Directions />
+                            <p style={styles.message}>{message}</p>
                             <Button 
-                                onClick={showInventory}
-                                text="Inventory"
-                                testKey="ButtonInventory"
+                                onClick={() => examineRoom(currentRoom)}
+                                text="Examine room"
+                                testKey="ButtonExamineRoom"
                             />
-                        </span>  
-                        <div>{ soundEnabled 
-                            ? <Button 
-                                onClick={disableSound}
-                                text="Turn sound off"
-                                testKey="ButtonSoundOff"
-                            />
-                            : <Button 
-                                onClick={enableSound}
-                                text="Turn sound on"
-                                testKey="ButtonSoundOn"
-                            />
-                        }</div>
-                    </section>
+                            <span style={styles.inventoryButton(inventory.itemsHeld.length)}>
+                                <Button 
+                                    onClick={showInventory}
+                                    text="Inventory"
+                                    testKey="ButtonInventory"
+                                />
+                            </span>  
+                            <div>{ soundEnabled 
+                                ? <Button 
+                                    onClick={disableSound}
+                                    text="Turn sound off"
+                                    testKey="ButtonSoundOff"
+                                />
+                                : <Button 
+                                    onClick={enableSound}
+                                    text="Turn sound on"
+                                    testKey="ButtonSoundOn"
+                                />
+                            }</div>
+                        </section>
+                    </div>
                 );
 
 
             case states.DISPLAYING_INVENTORY:
                 return (
-                    <section style={styles.lowerHalfContainer}>
-                        <Directions />
-                        <p style={styles.message}>{message}</p>
-                        <Inventory />
-                    </section>
+                    <div>
+                        <RoomDescription />
+                        <section style={styles.lowerHalfContainer}>
+                            <Directions />
+                            <p style={styles.message}>{message}</p>
+                            <Inventory />
+                        </section>
+                    </div>
                 );
 
 
@@ -128,12 +140,7 @@ const Game =
         };
 
 
-      return (
-          <div>
-              <RoomDescription />
-              { chooseState(state) } 
-          </div>
-      );
+      return chooseState(state);
   };
 
 

@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import getRoom, { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms.ts';
+import { isUnlocked, defaultUnsuccessfulEntryAttemptMessage } from './rooms.ts';
 import { itemCanBeUsed, itemHasBeenPickedUp } from './items';
 import playSoundEffect from '../audio';
 import { ApplicationContext } from '../Application/ApplicationContext';
@@ -14,15 +14,16 @@ const GameContext =
 
 export
 const states = {
-    LOADING: 'LOADING',
+    LOADING_ITEMS: 'LOADING_ITEMS',
+    LOADING_ROOMS: 'LOADING_ROOMS',
     DISPLAYING_DIRECTIONS: 'DISPLAYING_DIRECTIONS',
     DISPLAYING_INVENTORY: 'DISPLAYING_INVENTORY',
 };
 
 
 const initialState = {
-    state: states.LOADING,
-    currentRoom: getRoom('START'),
+    state: states.LOADING_ROOMS,
+    currentRoom: null,
     inventory: {
         itemsHeld: [],
         itemsUsed: [],
@@ -32,6 +33,7 @@ const initialState = {
 
 
 const actions = {
+    REGISTER_ROOMS: 'REGISTER_ROOMS',
     REGISTER_ITEMS: 'REGISTER_ITEMS',
     ADD_ITEMS: 'ADD_ITEMS',
     EXAMINE_ITEM: 'EXAMINE_ITEM',
@@ -45,8 +47,15 @@ const actions = {
 
 const update = 
      (state, action) => {
-         console.log(action.data);
          switch (action.type) {
+         case actions.REGISTER_ROOMS: 
+             return {
+                 ...state,
+                 currentRoom: action.data['START'],
+                 state: states.LOADING_ITEMS,
+                 rooms: action.data
+             };
+            
          case actions.REGISTER_ITEMS: 
              return {
                  ...state,
@@ -80,12 +89,12 @@ const update =
          case actions.CHANGE_ROOM:
              return (
                  isUnlocked({ 
-                     room: getRoom(action.payload.roomKey),
+                     room: state.rooms[action.payload.roomKey],
                      itemsUsed: state.inventory.itemsUsed
                  })
                      ? {
                          ...state,
-                         currentRoom: getRoom(action.payload.roomKey),
+                         currentRoom: state.rooms[action.payload.roomKey],
                          message: null,
                      }
                      : playSoundEffect({ 
@@ -96,12 +105,12 @@ const update =
                          ? { 
                              ...state,
                              state: states.DISPLAYING_INVENTORY,
-                             message: getRoom(action.payload.roomKey).messageOnUnsuccessfulEntryAttempt 
+                             message: state.rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage,
                          }
                          : { 
                              ...state,
-                             message: getRoom(action.payload.roomKey).messageOnUnsuccessfulEntryAttempt 
+                             message: state.rooms[action.payload.roomKey].messageOnUnsuccessfulEntryAttempt 
                             || defaultUnsuccessfulEntryAttemptMessage,
                          }
              );
@@ -117,7 +126,6 @@ const update =
                  const newItem = 
                      state.items[state.currentRoom.item];
 
-                 console.log(newItem);
 
                  playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled});
 
@@ -195,15 +203,6 @@ const GameProvider =
   ({ children }) => {
       const { applicationState: { soundEnabled } } =
         React.useContext(ApplicationContext);
-
-
-      const getRooms = 
-        async () => {
-            const rooms = 
-                await fetch(roomsEndpoint);
-
-            console.log(rooms);
-        };
     
 
       const [
@@ -211,6 +210,22 @@ const GameProvider =
           dispatch,
       ] = 
         useReducer(update, initialState);
+
+
+
+      const getRooms = 
+        async () => {
+            const response = 
+                await fetch(roomsEndpoint);
+
+            const jsonResponse =
+                    await response.json();
+
+            dispatch({
+                type: actions.REGISTER_ROOMS,
+                data: JSON.parse(jsonResponse.body)
+            });
+        };
 
 
       const getItems =
