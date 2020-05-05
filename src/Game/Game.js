@@ -34,12 +34,18 @@ const styles =
 const Game = 
   () => { 
       const {
-          applicationState: { soundEnabled },
+          applicationState,
           enableSound,
           disableSound,
+          saveGame,
+          saveData,
       } =
         React.useContext(ApplicationContext);
         
+
+      const { soundEnabled } = 
+        applicationState;
+
 
       const { 
           gameState,
@@ -47,19 +53,43 @@ const Game =
           examineRoom,
           getRooms,
           getItems,
+          loadGame,
       } = 
         React.useContext(GameContext);
 
 
-      useEffect(() => {
-          if (gameState.state === states.LOADING_ROOMS) {
-              getRooms();
-          }
+      useEffect(
+          () => {
+              if (gameState.state === states.DISPLAYING_DIRECTIONS 
+                || gameState.state === states.DISPLAYING_INVENTORY) {
+                  saveGame({ gameState });
+              }
+              
+              if (gameState.state === states.LOADING_ROOMS) {
+                  const saveData = 
+                    JSON.parse(localStorage.getItem('saveData'));
 
-          if (gameState.state === states.LOADING_ITEMS) {
-              getItems();
-          }
-      }, [getRooms, getItems, gameState.rooms, gameState.items, gameState.state]);
+                  if (saveData) {
+                      // if the user selected "new game", the save data would have been deleted before this point
+                      loadGame(saveData.gameState);
+                  } else {
+                      getRooms();
+                  }
+              }
+
+              if (gameState.state === states.LOADING_ITEMS) {
+                  getItems();
+              }
+          }, [
+              getRooms, 
+              getItems, 
+              gameState,
+              saveGame,
+              loadGame,
+              saveData,
+              applicationState.saveData
+          ]
+      );
 
 
       const { 

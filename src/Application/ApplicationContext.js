@@ -18,6 +18,7 @@ const states = {
 const initialState = { 
     state: states.DISPLAYING_TITLE_SCREEN,
     soundEnabled: false,
+    saveData: JSON.parse(localStorage.getItem('saveData'))
 };
 
 
@@ -39,6 +40,18 @@ const update =
           return {
               state: states.DISPLAYING_GAME,
               soundEnabled: action.payload,
+          };
+
+
+      case actions.LOAD_GAME: 
+          if (state.saveData.applicationState.soundEnabled) {
+              playBgMusic();
+          }
+
+
+          return {
+              state: states.DISPLAYING_GAME,
+              soundEnabled: state.saveData.applicationState.soundEnabled,
           };
 
 
@@ -77,6 +90,8 @@ const ApplicationProvider =
 
       const startGame = useCallback(
           ({ soundEnabled }) => {
+              localStorage.setItem('saveData', null);
+              
               dispatch({
                   type: actions.START_GAME,
                   payload: soundEnabled,
@@ -84,6 +99,16 @@ const ApplicationProvider =
           },
           // The second argument here is an array of things that the first argument relies on
           // This is so it knows what to ignore to avoid unnecessary re-renders
+          [dispatch]
+      );
+
+
+      const loadGame = useCallback(
+          () => {
+              dispatch({ 
+                  type: actions.LOAD_GAME,
+              });
+          },
           [dispatch]
       );
 
@@ -108,11 +133,26 @@ const ApplicationProvider =
       );
 
 
+      const saveGame = 
+          ({ gameState }) => {
+              // this feels like it belongs in the Application Context, but needs data from both AppContext and GameContext
+              localStorage
+                  .setItem('saveData', 
+                      JSON.stringify({ 
+                          gameState, 
+                          applicationState
+                      })
+                  );
+          }; 
+
+
       const value = {  
           applicationState,
           startGame,
           enableSound,
           disableSound,
+          saveGame,
+          loadGame,
       };
 
 

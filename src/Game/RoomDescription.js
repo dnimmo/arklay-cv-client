@@ -50,7 +50,7 @@ const RoomDescription =
       } = 
         React.useContext(GameContext);
 
-      console.log(gameState);
+        
       const {
           currentRoom,
           inventory,

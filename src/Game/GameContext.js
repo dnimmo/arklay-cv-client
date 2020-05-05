@@ -42,12 +42,19 @@ const actions = {
     SHOW_DIRECTIONS: 'SHOW_DIRECTIONS',
     SHOW_INVENTORY: 'SHOW_INVENTORY',
     USE_ITEM: 'USE_ITEM',
+    LOAD_GAME: 'LOAD_GAME'
 };
 
 
 const update = 
      (state, action) => {
          switch (action.type) {
+
+         case actions.LOAD_GAME: 
+             return {
+                 ...action.payload
+             };
+
          case actions.REGISTER_ROOMS: 
              return {
                  ...state,
@@ -301,6 +308,18 @@ const GameProvider =
         );
 
 
+      const loadGame = 
+            useCallback(
+                (gameState) => {
+                    dispatch({
+                        type: actions.LOAD_GAME,
+                        payload: gameState
+                    });
+                },
+                [dispatch]
+            );
+
+
       const value = {
           getItems,
           getRooms,
@@ -310,6 +329,7 @@ const GameProvider =
           changeRoom,
           attemptToUseItem,
           examineRoom,
+          loadGame,
       };
 
 
