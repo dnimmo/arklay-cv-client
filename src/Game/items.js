@@ -12,8 +12,8 @@ const itemCanBeUsed =
 export
 const itemHasBeenPickedUp =
   ({ item, inventory }) => 
-      inventory.itemsHeld.includes(item)
-        || inventory.itemsUsed.includes(item);
+      inventory.itemsHeld.map(x => x.key).includes(item)
+        || inventory.itemsUsed.map(x => x.key).includes(item.key);
 
 
 export
@@ -21,5 +21,6 @@ const itemHasBeenUsed =
   ({ item, inventory }) => 
       inventory
           .itemsUsed
+          .map(x => x.key)
           .includes(item);
 
