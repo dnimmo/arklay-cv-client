@@ -175,8 +175,8 @@ const update =
                               state
                                   .inventory
                                   .itemsHeld
-                                  .filter(x => 
-                                      x !== action.payload.itemKey
+                                  .filter(({ key }) => 
+                                      key !== action.payload.itemKey
                                   ),
 
                             itemsUsed: 
