@@ -1,9 +1,9 @@
 # arklay-cv-client
 
-This project is in-progress. You can view its current progress at http://arklay.surge.sh - note though that performance isn't amazing on Surge.sh; this is down to the platform (and it being free) rather than my code. :D 
+This project is in-progress. You can view its current progress at https://projectarklay4.s3-eu-west-1.amazonaws.com/index.html.
 
 
-The server-side functionality can be found at https://github.com/dnimmo/arklay-server (this is served via AWS API Gateway, with endpoints that are backed by AWS Lambda functions)
+The server-side functionality can be found at https://github.com/dnimmo/arklay-server (this is served via AWS API Gateway, with endpoints that are backed by AWS Lambda functions).
 
 
 ### sound
