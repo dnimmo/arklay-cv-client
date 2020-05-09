@@ -126,20 +126,23 @@ const update =
 
          case actions.EXAMINE_ROOM: 
              if (state.currentRoom.item 
-                && !itemHasBeenPickedUp({ 
-                    item: state.currentRoom.item,
-                    inventory: state.inventory
-                })) {
+             && !itemHasBeenPickedUp({ 
+                 item: state.currentRoom.item,
+                 inventory: state.inventory
+             })
+             ) {
                  const newItem = 
                      state.items[state.currentRoom.item];
 
-
-                 playSoundEffect({ filename: 'success_chime', soundEnabled: action.payload.soundEnabled});
+                 playSoundEffect({ 
+                     filename: 'success_chime', soundEnabled: action.payload.soundEnabled
+                 });
 
                  return { 
                      ...state,
                      inventory: 
-                       { ...state.inventory,
+                       { 
+                           ...state.inventory,
                            itemsHeld: state.inventory.itemsHeld.concat(newItem),
                        },
                      message: 
@@ -175,7 +178,7 @@ const update =
                               state
                                   .inventory
                                   .itemsHeld
-                                  .filter(({ key }) => 
+                                  .filter((key) => 
                                       key !== action.payload.itemKey
                                   ),
 
