@@ -18,7 +18,6 @@ const itemHasBeenPickedUp =
           .includes(item)
         || inventory
             .itemsUsed
-            .map
             .includes(item.key);
 
 
