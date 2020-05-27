@@ -1,7 +1,6 @@
 # arklay-cv-client
 
-This project is in-progress. You can view its current progress at http://projectarklay.com.s3-website-eu-west-1.amazonaws.com/.
-
+http://projectarklay.com/
 
 The server-side functionality can be found at https://github.com/dnimmo/arklay-server (this is served via AWS API Gateway, with endpoints that are backed by AWS Lambda functions).
 
