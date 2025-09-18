@@ -10,16 +10,16 @@
     "random-name": "0.1.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.1.0",
     "uuid": "3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "cypress": "^4.3.0",
+    "cypress": "^14.5.2",
     "eslint-plugin-cypress": "^2.10.3",
-    "jest": "^24.9.0",
+    "jest": "^30.0.4",
     "ts-jest": "^25.3.1",
     "typescript": "^3.3.3"
   },
